@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7E85F2C5-5855-4C9D-937C-0E6ACF0A1C4C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ButtonClicker</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>453B7DEE3E5FA95899665DA5102C8699AB83D603</key>
+		<string>https://github.com/playgameservices/ios-basic-samples</string>
+		<key>76A8389093EC514E3990CEBCACA564EDE710231A</key>
+		<string>sso://devrel/samples/playgames/cpp/cpp-ios-basic-samples</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>samples-ios/ButtonClicker/ButtonClicker.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>453B7DEE3E5FA95899665DA5102C8699AB83D603</key>
+		<string>../../../../../ios-basic-samples</string>
+		<key>76A8389093EC514E3990CEBCACA564EDE710231A</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>sso://devrel/samples/playgames/cpp/cpp-ios-basic-samples</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>76A8389093EC514E3990CEBCACA564EDE710231A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>76A8389093EC514E3990CEBCACA564EDE710231A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cpp-ios-basic-samples</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>453B7DEE3E5FA95899665DA5102C8699AB83D603</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios-basic-samples</string>
+		</dict>
+	</array>
+</dict>
+</plist>

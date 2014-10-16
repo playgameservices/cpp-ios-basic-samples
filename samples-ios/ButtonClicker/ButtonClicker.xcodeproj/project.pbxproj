@@ -1,0 +1,435 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		28595943198AC8C30071670D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28595942198AC8C30071670D /* CoreTelephony.framework */; };
+		28595945198AC8D10071670D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 28595944198AC8D10071670D /* libz.dylib */; };
+		28A46DD219E375F800F3E58A /* ButtonClickerEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28A46DD019E375F800F3E58A /* ButtonClickerEngine.mm */; };
+		28D282AC19EF512300D38D81 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D282A819EF512300D38D81 /* GoogleOpenSource.framework */; };
+		28D282AD19EF512300D38D81 /* GooglePlayGames.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28D282A919EF512300D38D81 /* GooglePlayGames.bundle */; };
+		28D282AE19EF512300D38D81 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28D282AA19EF512300D38D81 /* GooglePlus.bundle */; };
+		28D282AF19EF512300D38D81 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D282AB19EF512300D38D81 /* GooglePlus.framework */; };
+		28D282B119EF514D00D38D81 /* gpg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D282B019EF514D00D38D81 /* gpg.framework */; };
+		491B8C361865084E0061D71C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491B8C351865084E0061D71C /* AddressBook.framework */; };
+		494EB07F185F7C9400A93A4B /* ButtonClickerPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 494EB07E185F7C9400A93A4B /* ButtonClickerPlayer.m */; };
+		49701A391856BA4200A19EBE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A381856BA4200A19EBE /* AssetsLibrary.framework */; };
+		49701A3B1856BA4900A19EBE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A3A1856BA4900A19EBE /* CoreData.framework */; };
+		49701A3D1856BA4E00A19EBE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A3C1856BA4E00A19EBE /* CoreMotion.framework */; };
+		49701A3F1856BA5400A19EBE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A3E1856BA5400A19EBE /* CoreText.framework */; };
+		49701A411856BA5A00A19EBE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A401856BA5A00A19EBE /* MediaPlayer.framework */; };
+		49701A431856BA5F00A19EBE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A421856BA5F00A19EBE /* QuartzCore.framework */; };
+		49701A451856BA6500A19EBE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A441856BA6500A19EBE /* Security.framework */; };
+		49701A471856BA6D00A19EBE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A461856BA6D00A19EBE /* SystemConfiguration.framework */; };
+		49701A491856BA9800A19EBE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A481856BA9800A19EBE /* CoreLocation.framework */; };
+		49701A4B185788EA00A19EBE /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49701A4A185788EA00A19EBE /* libc++.dylib */; };
+		4995C54B18626F29008537F7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4995C54A18626F29008537F7 /* README.md */; };
+		49D8179D18567206008B9FD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D8179C18567206008B9FD9 /* Foundation.framework */; };
+		49D8179F18567206008B9FD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D8179E18567206008B9FD9 /* CoreGraphics.framework */; };
+		49D817A118567206008B9FD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D817A018567206008B9FD9 /* UIKit.framework */; };
+		49D817A718567206008B9FD9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49D817A518567206008B9FD9 /* InfoPlist.strings */; };
+		49D817A918567206008B9FD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D817A818567206008B9FD9 /* main.m */; };
+		49D817AD18567206008B9FD9 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D817AC18567206008B9FD9 /* AppDelegate.mm */; };
+		49D817B018567206008B9FD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49D817AE18567206008B9FD9 /* Main.storyboard */; };
+		49D817B318567206008B9FD9 /* LobbyViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D817B218567206008B9FD9 /* LobbyViewController.mm */; };
+		49D817B518567206008B9FD9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D817B418567206008B9FD9 /* Images.xcassets */; };
+		49D817D51856818D008B9FD9 /* GameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D817D41856818D008B9FD9 /* GameViewController.mm */; };
+		49D817D8185681C5008B9FD9 /* GameModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 49D817D7185681C5008B9FD9 /* GameModel.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		28595942198AC8C30071670D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		28595944198AC8D10071670D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		28A46DD019E375F800F3E58A /* ButtonClickerEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ButtonClickerEngine.mm; sourceTree = "<group>"; };
+		28A46DD119E375F800F3E58A /* ButtonClickerEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonClickerEngine.h; sourceTree = "<group>"; };
+		28D282A819EF512300D38D81 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = ../Libraries/GoogleOpenSource.framework; sourceTree = "<group>"; };
+		28D282A919EF512300D38D81 /* GooglePlayGames.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlayGames.bundle; path = ../Libraries/GooglePlayGames.bundle; sourceTree = "<group>"; };
+		28D282AA19EF512300D38D81 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = ../Libraries/GooglePlus.bundle; sourceTree = "<group>"; };
+		28D282AB19EF512300D38D81 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = ../Libraries/GooglePlus.framework; sourceTree = "<group>"; };
+		28D282B019EF514D00D38D81 /* gpg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gpg.framework; path = ../Libraries/gpg.framework; sourceTree = "<group>"; };
+		491B8C351865084E0061D71C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		494EB07D185F7C9400A93A4B /* ButtonClickerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonClickerPlayer.h; sourceTree = "<group>"; };
+		494EB07E185F7C9400A93A4B /* ButtonClickerPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonClickerPlayer.m; sourceTree = "<group>"; };
+		49701A381856BA4200A19EBE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		49701A3A1856BA4900A19EBE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		49701A3C1856BA4E00A19EBE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		49701A3E1856BA5400A19EBE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		49701A401856BA5A00A19EBE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		49701A421856BA5F00A19EBE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		49701A441856BA6500A19EBE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		49701A461856BA6D00A19EBE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		49701A481856BA9800A19EBE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		49701A4A185788EA00A19EBE /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		4995C54518626C85008537F7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		4995C54A18626F29008537F7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		49D8179918567206008B9FD9 /* ButtonClicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ButtonClicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49D8179C18567206008B9FD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		49D8179E18567206008B9FD9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		49D817A018567206008B9FD9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		49D817A418567206008B9FD9 /* ButtonClicker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ButtonClicker-Info.plist"; sourceTree = "<group>"; };
+		49D817A618567206008B9FD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		49D817A818567206008B9FD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		49D817AA18567206008B9FD9 /* ButtonClicker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ButtonClicker-Prefix.pch"; sourceTree = "<group>"; };
+		49D817AB18567206008B9FD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		49D817AC18567206008B9FD9 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		49D817AF18567206008B9FD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		49D817B118567206008B9FD9 /* LobbyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LobbyViewController.h; sourceTree = "<group>"; };
+		49D817B218567206008B9FD9 /* LobbyViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LobbyViewController.mm; sourceTree = "<group>"; };
+		49D817B418567206008B9FD9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		49D817D31856818D008B9FD9 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		49D817D41856818D008B9FD9 /* GameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameViewController.mm; sourceTree = "<group>"; };
+		49D817D6185681C5008B9FD9 /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
+		49D817D7185681C5008B9FD9 /* GameModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameModel.mm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		49D8179618567206008B9FD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28D282B119EF514D00D38D81 /* gpg.framework in Frameworks */,
+				28595945198AC8D10071670D /* libz.dylib in Frameworks */,
+				28595943198AC8C30071670D /* CoreTelephony.framework in Frameworks */,
+				491B8C361865084E0061D71C /* AddressBook.framework in Frameworks */,
+				49701A4B185788EA00A19EBE /* libc++.dylib in Frameworks */,
+				49701A491856BA9800A19EBE /* CoreLocation.framework in Frameworks */,
+				49701A471856BA6D00A19EBE /* SystemConfiguration.framework in Frameworks */,
+				49701A451856BA6500A19EBE /* Security.framework in Frameworks */,
+				28D282AF19EF512300D38D81 /* GooglePlus.framework in Frameworks */,
+				49701A431856BA5F00A19EBE /* QuartzCore.framework in Frameworks */,
+				49701A411856BA5A00A19EBE /* MediaPlayer.framework in Frameworks */,
+				49701A3F1856BA5400A19EBE /* CoreText.framework in Frameworks */,
+				49701A3D1856BA4E00A19EBE /* CoreMotion.framework in Frameworks */,
+				49701A3B1856BA4900A19EBE /* CoreData.framework in Frameworks */,
+				49701A391856BA4200A19EBE /* AssetsLibrary.framework in Frameworks */,
+				28D282AC19EF512300D38D81 /* GoogleOpenSource.framework in Frameworks */,
+				49D8179F18567206008B9FD9 /* CoreGraphics.framework in Frameworks */,
+				49D817A118567206008B9FD9 /* UIKit.framework in Frameworks */,
+				49D8179D18567206008B9FD9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		49D8179018567206008B9FD9 = {
+			isa = PBXGroup;
+			children = (
+				49D817A218567206008B9FD9 /* ButtonClicker */,
+				49D8179B18567206008B9FD9 /* Frameworks */,
+				49D8179A18567206008B9FD9 /* Products */,
+				4995C54A18626F29008537F7 /* README.md */,
+			);
+			sourceTree = "<group>";
+		};
+		49D8179A18567206008B9FD9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49D8179918567206008B9FD9 /* ButtonClicker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		49D8179B18567206008B9FD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28D282B019EF514D00D38D81 /* gpg.framework */,
+				28D282A819EF512300D38D81 /* GoogleOpenSource.framework */,
+				28D282A919EF512300D38D81 /* GooglePlayGames.bundle */,
+				28D282AA19EF512300D38D81 /* GooglePlus.bundle */,
+				28D282AB19EF512300D38D81 /* GooglePlus.framework */,
+				28595944198AC8D10071670D /* libz.dylib */,
+				28595942198AC8C30071670D /* CoreTelephony.framework */,
+				491B8C351865084E0061D71C /* AddressBook.framework */,
+				49701A4A185788EA00A19EBE /* libc++.dylib */,
+				49701A481856BA9800A19EBE /* CoreLocation.framework */,
+				49701A461856BA6D00A19EBE /* SystemConfiguration.framework */,
+				49701A441856BA6500A19EBE /* Security.framework */,
+				49701A421856BA5F00A19EBE /* QuartzCore.framework */,
+				49701A401856BA5A00A19EBE /* MediaPlayer.framework */,
+				49701A3E1856BA5400A19EBE /* CoreText.framework */,
+				49701A3C1856BA4E00A19EBE /* CoreMotion.framework */,
+				49701A3A1856BA4900A19EBE /* CoreData.framework */,
+				49701A381856BA4200A19EBE /* AssetsLibrary.framework */,
+				49D8179C18567206008B9FD9 /* Foundation.framework */,
+				49D8179E18567206008B9FD9 /* CoreGraphics.framework */,
+				49D817A018567206008B9FD9 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		49D817A218567206008B9FD9 /* ButtonClicker */ = {
+			isa = PBXGroup;
+			children = (
+				28A46DD019E375F800F3E58A /* ButtonClickerEngine.mm */,
+				28A46DD119E375F800F3E58A /* ButtonClickerEngine.h */,
+				49D817AB18567206008B9FD9 /* AppDelegate.h */,
+				49D817AC18567206008B9FD9 /* AppDelegate.mm */,
+				494EB07D185F7C9400A93A4B /* ButtonClickerPlayer.h */,
+				494EB07E185F7C9400A93A4B /* ButtonClickerPlayer.m */,
+				4995C54518626C85008537F7 /* Constants.h */,
+				49D817D6185681C5008B9FD9 /* GameModel.h */,
+				49D817D7185681C5008B9FD9 /* GameModel.mm */,
+				49D817D31856818D008B9FD9 /* GameViewController.h */,
+				49D817D41856818D008B9FD9 /* GameViewController.mm */,
+				49D817B118567206008B9FD9 /* LobbyViewController.h */,
+				49D817B218567206008B9FD9 /* LobbyViewController.mm */,
+				49D817AE18567206008B9FD9 /* Main.storyboard */,
+				49D817B418567206008B9FD9 /* Images.xcassets */,
+				49D817A318567206008B9FD9 /* Supporting Files */,
+			);
+			path = ButtonClicker;
+			sourceTree = "<group>";
+		};
+		49D817A318567206008B9FD9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				49D817A418567206008B9FD9 /* ButtonClicker-Info.plist */,
+				49D817A518567206008B9FD9 /* InfoPlist.strings */,
+				49D817A818567206008B9FD9 /* main.m */,
+				49D817AA18567206008B9FD9 /* ButtonClicker-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		49D8179818567206008B9FD9 /* ButtonClicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49D817CB18567206008B9FD9 /* Build configuration list for PBXNativeTarget "ButtonClicker" */;
+			buildPhases = (
+				49D8179518567206008B9FD9 /* Sources */,
+				49D8179618567206008B9FD9 /* Frameworks */,
+				49D8179718567206008B9FD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ButtonClicker;
+			productName = ButtonClicker;
+			productReference = 49D8179918567206008B9FD9 /* ButtonClicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49D8179118567206008B9FD9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = Google;
+			};
+			buildConfigurationList = 49D8179418567206008B9FD9 /* Build configuration list for PBXProject "ButtonClicker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 49D8179018567206008B9FD9;
+			productRefGroup = 49D8179A18567206008B9FD9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				49D8179818567206008B9FD9 /* ButtonClicker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		49D8179718567206008B9FD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4995C54B18626F29008537F7 /* README.md in Resources */,
+				49D817B518567206008B9FD9 /* Images.xcassets in Resources */,
+				49D817A718567206008B9FD9 /* InfoPlist.strings in Resources */,
+				28D282AD19EF512300D38D81 /* GooglePlayGames.bundle in Resources */,
+				28D282AE19EF512300D38D81 /* GooglePlus.bundle in Resources */,
+				49D817B018567206008B9FD9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		49D8179518567206008B9FD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49D817D51856818D008B9FD9 /* GameViewController.mm in Sources */,
+				49D817B318567206008B9FD9 /* LobbyViewController.mm in Sources */,
+				49D817D8185681C5008B9FD9 /* GameModel.mm in Sources */,
+				49D817AD18567206008B9FD9 /* AppDelegate.mm in Sources */,
+				494EB07F185F7C9400A93A4B /* ButtonClickerPlayer.m in Sources */,
+				49D817A918567206008B9FD9 /* main.m in Sources */,
+				28A46DD219E375F800F3E58A /* ButtonClickerEngine.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		49D817A518567206008B9FD9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49D817A618567206008B9FD9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		49D817AE18567206008B9FD9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49D817AF18567206008B9FD9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		49D817C918567206008B9FD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		49D817CA18567206008B9FD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		49D817CC18567206008B9FD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/ButtonClicker/",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../Libraries",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ButtonClicker/ButtonClicker-Prefix.pch";
+				INFOPLIST_FILE = "ButtonClicker/ButtonClicker-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		49D817CD18567206008B9FD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/ButtonClicker/",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../Libraries",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ButtonClicker/ButtonClicker-Prefix.pch";
+				INFOPLIST_FILE = "ButtonClicker/ButtonClicker-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		49D8179418567206008B9FD9 /* Build configuration list for PBXProject "ButtonClicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49D817C918567206008B9FD9 /* Debug */,
+				49D817CA18567206008B9FD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49D817CB18567206008B9FD9 /* Build configuration list for PBXNativeTarget "ButtonClicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49D817CC18567206008B9FD9 /* Debug */,
+				49D817CD18567206008B9FD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49D8179118567206008B9FD9 /* Project object */;
+}

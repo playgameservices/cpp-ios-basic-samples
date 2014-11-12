@@ -88,8 +88,8 @@
                                                             if (response.conflict_id != "") {
                                                               //Conflict detected
                                                               NSLog(@"Snapshot conflict detected going to resolve that");
-                                                              [self resolveSnapshotWithBaseMetadata:response.conflict_base
-                                                                                     remoteMetadata:response.conflict_remote
+                                                              [self resolveSnapshotWithBaseMetadata:response.conflict_original
+                                                                                     remoteMetadata:response.conflict_unmerged
                                                                                          conflictId:response.conflict_id];
                                                             }
                                                             
@@ -123,8 +123,8 @@
                                                             if (response.conflict_id != "") {
                                                               //Conflict detected
                                                               NSLog(@"Snapshot conflict detected going to resolve that");
-                                                              [self resolveSnapshotWithBaseMetadata:response.conflict_base
-                                                                                     remoteMetadata:response.conflict_remote
+                                                              [self resolveSnapshotWithBaseMetadata:response.conflict_original
+                                                                                     remoteMetadata:response.conflict_unmerged
                                                                                          conflictId:response.conflict_id];
                                                             }
                                                             

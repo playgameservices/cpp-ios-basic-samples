@@ -108,6 +108,10 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
     dispatch_async(dispatch_get_main_queue(), ^{
       [self refreshButtons:NO];
       [self.signInButton setTitle:@"Sign in" forState:UIControlStateNormal];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self.indicator stopAnimating];
+        self.signInButton.enabled = YES;
+      });
     });
   }
 }

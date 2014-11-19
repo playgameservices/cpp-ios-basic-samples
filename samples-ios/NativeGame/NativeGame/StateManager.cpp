@@ -44,7 +44,7 @@ void OnAuthActionFinished(gpg::AuthOperation op, gpg::AuthStatus status) {
 
 void OnAuthActionStarted(gpg::AuthOperation op) {
   LOGI("OnAuthActionStarted");
-  switch ( op ) {
+  switch (op) {
   case gpg::AuthOperation::SIGN_IN:
     LOGI("Signing In");
     break;
@@ -88,18 +88,22 @@ void StateManager::SubmitHighScore(const char *leaderboardId, uint64_t score) {
 
 void StateManager::ShowAchievements()
 {
-    if (gameServices->IsAuthorized()) {
-        LOGI("Show achievement");
-        gameServices->Achievements().ShowAllUI();
-    }
+  if (gameServices->IsAuthorized()) {
+    LOGI("Show achievement");
+    gameServices->Achievements().ShowAllUI([](gpg::UIStatus const &status) {
+      LOGI("Achievement shown");
+    });
+  }
 }
 
 void StateManager::ShowLeaderboard(const char *leaderboardId)
 {
-    if (gameServices->IsAuthorized()) {
-        LOGI("Show achievement");
-        gameServices->Leaderboards().ShowUI(leaderboardId);
-    }    
+  if (gameServices->IsAuthorized()) {
+    LOGI("Show leaderboard");
+    gameServices->Leaderboards().ShowUI(leaderboardId, [](gpg::UIStatus const &status) {
+      LOGI("Leaderboard shown");
+    });
+  }
 }
 
 
@@ -108,22 +112,15 @@ void StateManager::InitServices(gpg::PlatformConfiguration &pc,gpg::GameServices
   if (!gameServices) {
     LOGI("Uninitialized services, so creating");
     gameServices = gpg::GameServices::Builder()
-      .SetLogging(gpg::DEFAULT_ON_LOG, gpg::LogLevel::VERBOSE)
-      //   .SetOnAuthActionFinished(OnAuthActionFinished)
-      //.SetOnAuthActionStarted(OnAuthActionStarted)
-      // Add a test scope (we don't actually use this).
-      //    .AddOauthScope("https://www.googleapis.com/auth/appstate")
-      //    .InternalSetRootURL("https://www-googleapis-staging.sandbox.google.com/")
       .SetOnAuthActionFinished([callback](gpg::AuthOperation op, gpg::AuthStatus status){
-          LOGI("Sign in finished with a result of %d", status);
-          if( status == gpg::AuthStatus::VALID )
-              isSignedIn = true;
-          else
-              isSignedIn = false;
-          callback( op, status);
+        LOGI("Sign in finished with a result of %d", status);
+        if( status == gpg::AuthStatus::VALID )
+          isSignedIn = true;
+        else
+          isSignedIn = false;
+        callback( op, status);
       } )
       .Create(pc);
-      
   }
   LOGI("Created");
 }

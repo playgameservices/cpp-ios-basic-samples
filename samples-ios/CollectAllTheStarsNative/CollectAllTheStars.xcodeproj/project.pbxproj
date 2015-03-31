@@ -402,9 +402,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/CollectAllTheStars",
-					"$(PROJECT_DIR)/Libraries",
-					"../../gpg-cpp-sdk/ios",
-					"/Users/hakuro/devrel/samples/playgames/cpp/cpp-ios-basic-samples/samples-ios/Libraries",
+					"$(SRCROOT)/../Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CollectAllTheStars/CollectAllTheStars-Prefix.pch";
@@ -422,9 +420,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/CollectAllTheStars",
-					"$(PROJECT_DIR)/Libraries",
-					"../../gpg-cpp-sdk/ios",
-					"/Users/hakuro/devrel/samples/playgames/cpp/cpp-ios-basic-samples/samples-ios/Libraries",
+					"$(SRCROOT)/../Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CollectAllTheStars/CollectAllTheStars-Prefix.pch";

@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		284108DD195518C00078BB6F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 284108DC195518C00078BB6F /* libz.dylib */; };
 		284108DF195518E50078BB6F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284108DE195518E50078BB6F /* CoreTelephony.framework */; };
+		2891F7761ACA3CC8003C3552 /* gpg.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2891F7751ACA3CC8003C3552 /* gpg.bundle */; };
 		28A373A71A13EA440056B606 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A373A21A13EA440056B606 /* GoogleOpenSource.framework */; };
-		28A373A81A13EA440056B606 /* GooglePlayGames.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28A373A31A13EA440056B606 /* GooglePlayGames.bundle */; };
 		28A373A91A13EA440056B606 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28A373A41A13EA440056B606 /* GooglePlus.bundle */; };
 		28A373AA1A13EA440056B606 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A373A51A13EA440056B606 /* GooglePlus.framework */; };
 		28A373AB1A13EA440056B606 /* gpg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A373A61A13EA440056B606 /* gpg.framework */; };
@@ -53,8 +53,8 @@
 /* Begin PBXFileReference section */
 		284108DC195518C00078BB6F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		284108DE195518E50078BB6F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2891F7751ACA3CC8003C3552 /* gpg.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = gpg.bundle; path = ../Libraries/gpg.bundle; sourceTree = "<group>"; };
 		28A373A21A13EA440056B606 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = ../Libraries/GoogleOpenSource.framework; sourceTree = "<group>"; };
-		28A373A31A13EA440056B606 /* GooglePlayGames.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlayGames.bundle; path = ../Libraries/GooglePlayGames.bundle; sourceTree = "<group>"; };
 		28A373A41A13EA440056B606 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = ../Libraries/GooglePlus.bundle; sourceTree = "<group>"; };
 		28A373A51A13EA440056B606 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = ../Libraries/GooglePlus.framework; sourceTree = "<group>"; };
 		28A373A61A13EA440056B606 /* gpg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gpg.framework; path = ../Libraries/gpg.framework; sourceTree = "<group>"; };
@@ -169,8 +169,8 @@
 		499E31271739DABB003CFF53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2891F7751ACA3CC8003C3552 /* gpg.bundle */,
 				28A373A21A13EA440056B606 /* GoogleOpenSource.framework */,
-				28A373A31A13EA440056B606 /* GooglePlayGames.bundle */,
 				28A373A41A13EA440056B606 /* GooglePlus.bundle */,
 				28A373A51A13EA440056B606 /* GooglePlus.framework */,
 				28A373A61A13EA440056B606 /* gpg.framework */,
@@ -290,13 +290,13 @@
 				4979D94318A557EE00D773E7 /* gplus_signin_pressed@2x.png in Resources */,
 				4979D94118A557EE00D773E7 /* gplus_signin_normal@2x.png in Resources */,
 				499E31451739DABB003CFF53 /* GCATViewController_iPhone.xib in Resources */,
+				2891F7761ACA3CC8003C3552 /* gpg.bundle in Resources */,
 				4979D94F18A5581700D773E7 /* Default-568h@2x.png in Resources */,
 				4979D93718A557E400D773E7 /* allTheStarsIcon@2x.png in Resources */,
 				28A373A91A13EA440056B606 /* GooglePlus.bundle in Resources */,
 				4979D95018A5581700D773E7 /* Default.png in Resources */,
 				4979D95118A5581700D773E7 /* Default@2x.png in Resources */,
 				494FF777173DBB430099295C /* README.md in Resources */,
-				28A373A81A13EA440056B606 /* GooglePlayGames.bundle in Resources */,
 				4979D93F18A557EE00D773E7 /* gplus_signin_disabled@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

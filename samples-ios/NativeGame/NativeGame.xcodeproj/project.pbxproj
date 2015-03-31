@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		282C531F18CFD0B6000A1C35 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 282C531E18CFD0B6000A1C35 /* libz.dylib */; };
 		2830FADE1A1BD78600C73B2A /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2830FAD91A1BD78500C73B2A /* GoogleOpenSource.framework */; };
-		2830FADF1A1BD78600C73B2A /* GooglePlayGames.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2830FADA1A1BD78500C73B2A /* GooglePlayGames.bundle */; };
 		2830FAE01A1BD78600C73B2A /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2830FADB1A1BD78500C73B2A /* GooglePlus.bundle */; };
 		2830FAE11A1BD78600C73B2A /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2830FADC1A1BD78600C73B2A /* GooglePlus.framework */; };
 		2830FAE21A1BD78600C73B2A /* gpg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2830FADD1A1BD78600C73B2A /* gpg.framework */; };
 		283B3A1F196F07CB00727748 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B3A1E196F07CB00727748 /* CoreData.framework */; };
 		283B3A21196F07D000727748 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B3A20196F07D000727748 /* CoreTelephony.framework */; };
+		2891F7781ACA3CF5003C3552 /* gpg.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2891F7771ACA3CF5003C3552 /* gpg.bundle */; };
 		28E1300C18C9203E001075F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E1300B18C9203E001075F0 /* Foundation.framework */; };
 		28E1300E18C9203E001075F0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E1300D18C9203E001075F0 /* CoreGraphics.framework */; };
 		28E1301018C9203E001075F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E1300F18C9203E001075F0 /* UIKit.framework */; };
@@ -56,12 +56,12 @@
 /* Begin PBXFileReference section */
 		282C531E18CFD0B6000A1C35 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		2830FAD91A1BD78500C73B2A /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = ../Libraries/GoogleOpenSource.framework; sourceTree = "<group>"; };
-		2830FADA1A1BD78500C73B2A /* GooglePlayGames.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlayGames.bundle; path = ../Libraries/GooglePlayGames.bundle; sourceTree = "<group>"; };
 		2830FADB1A1BD78500C73B2A /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = ../Libraries/GooglePlus.bundle; sourceTree = "<group>"; };
 		2830FADC1A1BD78600C73B2A /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = ../Libraries/GooglePlus.framework; sourceTree = "<group>"; };
 		2830FADD1A1BD78600C73B2A /* gpg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gpg.framework; path = ../Libraries/gpg.framework; sourceTree = "<group>"; };
 		283B3A1E196F07CB00727748 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		283B3A20196F07D000727748 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		2891F7771ACA3CF5003C3552 /* gpg.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = gpg.bundle; path = ../Libraries/gpg.bundle; sourceTree = "<group>"; };
 		28E1300818C9203E001075F0 /* NativeGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28E1300B18C9203E001075F0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		28E1300D18C9203E001075F0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -156,8 +156,8 @@
 		28E1300A18C9203E001075F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2891F7771ACA3CF5003C3552 /* gpg.bundle */,
 				2830FAD91A1BD78500C73B2A /* GoogleOpenSource.framework */,
-				2830FADA1A1BD78500C73B2A /* GooglePlayGames.bundle */,
 				2830FADB1A1BD78500C73B2A /* GooglePlus.bundle */,
 				2830FADC1A1BD78600C73B2A /* GooglePlus.framework */,
 				2830FADD1A1BD78600C73B2A /* gpg.framework */,
@@ -304,11 +304,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2891F7781ACA3CF5003C3552 /* gpg.bundle in Resources */,
 				28E1302818C9203E001075F0 /* Shader.fsh in Resources */,
 				28E1302618C9203E001075F0 /* Main_iPad.storyboard in Resources */,
 				2830FAE01A1BD78600C73B2A /* GooglePlus.bundle in Resources */,
 				28E1302318C9203E001075F0 /* Main_iPhone.storyboard in Resources */,
-				2830FADF1A1BD78600C73B2A /* GooglePlayGames.bundle in Resources */,
 				28E1302F18C9203E001075F0 /* Images.xcassets in Resources */,
 				28E1301A18C9203E001075F0 /* InfoPlist.strings in Resources */,
 				28E1302A18C9203E001075F0 /* Shader.vsh in Resources */,

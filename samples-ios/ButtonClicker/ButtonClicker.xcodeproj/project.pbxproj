@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		28595943198AC8C30071670D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28595942198AC8C30071670D /* CoreTelephony.framework */; };
 		28595945198AC8D10071670D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 28595944198AC8D10071670D /* libz.dylib */; };
+		2891F7741ACA3C99003C3552 /* gpg.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2891F7731ACA3C99003C3552 /* gpg.bundle */; };
 		28A46DD219E375F800F3E58A /* ButtonClickerEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28A46DD019E375F800F3E58A /* ButtonClickerEngine.mm */; };
 		28D282AC19EF512300D38D81 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D282A819EF512300D38D81 /* GoogleOpenSource.framework */; };
-		28D282AD19EF512300D38D81 /* GooglePlayGames.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28D282A919EF512300D38D81 /* GooglePlayGames.bundle */; };
 		28D282AE19EF512300D38D81 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28D282AA19EF512300D38D81 /* GooglePlus.bundle */; };
 		28D282AF19EF512300D38D81 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D282AB19EF512300D38D81 /* GooglePlus.framework */; };
 		28D282B119EF514D00D38D81 /* gpg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D282B019EF514D00D38D81 /* gpg.framework */; };
@@ -44,10 +44,10 @@
 /* Begin PBXFileReference section */
 		28595942198AC8C30071670D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		28595944198AC8D10071670D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		2891F7731ACA3C99003C3552 /* gpg.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = gpg.bundle; path = ../Libraries/gpg.bundle; sourceTree = "<group>"; };
 		28A46DD019E375F800F3E58A /* ButtonClickerEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ButtonClickerEngine.mm; sourceTree = "<group>"; };
 		28A46DD119E375F800F3E58A /* ButtonClickerEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonClickerEngine.h; sourceTree = "<group>"; };
 		28D282A819EF512300D38D81 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = ../Libraries/GoogleOpenSource.framework; sourceTree = "<group>"; };
-		28D282A919EF512300D38D81 /* GooglePlayGames.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlayGames.bundle; path = ../Libraries/GooglePlayGames.bundle; sourceTree = "<group>"; };
 		28D282AA19EF512300D38D81 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = ../Libraries/GooglePlus.bundle; sourceTree = "<group>"; };
 		28D282AB19EF512300D38D81 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = ../Libraries/GooglePlus.framework; sourceTree = "<group>"; };
 		28D282B019EF514D00D38D81 /* gpg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gpg.framework; path = ../Libraries/gpg.framework; sourceTree = "<group>"; };
@@ -139,10 +139,10 @@
 			children = (
 				28D282B019EF514D00D38D81 /* gpg.framework */,
 				28D282A819EF512300D38D81 /* GoogleOpenSource.framework */,
-				28D282A919EF512300D38D81 /* GooglePlayGames.bundle */,
 				28D282AA19EF512300D38D81 /* GooglePlus.bundle */,
 				28D282AB19EF512300D38D81 /* GooglePlus.framework */,
 				28595944198AC8D10071670D /* libz.dylib */,
+				2891F7731ACA3C99003C3552 /* gpg.bundle */,
 				28595942198AC8C30071670D /* CoreTelephony.framework */,
 				491B8C351865084E0061D71C /* AddressBook.framework */,
 				49701A4A185788EA00A19EBE /* libc++.dylib */,
@@ -250,8 +250,8 @@
 			files = (
 				4995C54B18626F29008537F7 /* README.md in Resources */,
 				49D817B518567206008B9FD9 /* Images.xcassets in Resources */,
+				2891F7741ACA3C99003C3552 /* gpg.bundle in Resources */,
 				49D817A718567206008B9FD9 /* InfoPlist.strings in Resources */,
-				28D282AD19EF512300D38D81 /* GooglePlayGames.bundle in Resources */,
 				28D282AE19EF512300D38D81 /* GooglePlus.bundle in Resources */,
 				49D817B018567206008B9FD9 /* Main.storyboard in Resources */,
 			);

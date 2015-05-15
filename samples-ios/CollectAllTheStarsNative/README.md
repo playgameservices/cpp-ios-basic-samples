@@ -52,7 +52,10 @@ own version of the game in the Play Console. Once you have done that, you will
 copy over your client ID to your own `Constants.h` file. To follow this process,
 perform the following steps:
 
-1. Open up your CollectAllTheStars project settings. Select the "CollectAllTheStars" target and,
+1, In a terminal window, change directories to this directory and add the cocoapod project
+    to the workspace.  To do this run `pod update`.
+2. Open the CollectAllTheStars workspace: `open CollectAllTheStars.xcworkspace`.
+3. Open project settings. Select the "CollectAllTheStars" target and,
   on the "Summary" tab, change the Bundle Identifier to
   something appropriate for your Provisioning Profile. (It will probably look like
   com.<your_company>.CollectAllTheStars)

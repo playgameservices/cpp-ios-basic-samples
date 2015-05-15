@@ -382,7 +382,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/CollectAllTheStars",
-					"$(SRCROOT)/../Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CollectAllTheStars/CollectAllTheStars-Prefix.pch";
@@ -400,7 +399,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/CollectAllTheStars",
-					"$(SRCROOT)/../Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CollectAllTheStars/CollectAllTheStars-Prefix.pch";

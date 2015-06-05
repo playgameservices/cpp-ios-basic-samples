@@ -36,14 +36,17 @@ To run TBMP Skeleton on your own device, you will need to create
 your own version of the game in the Play Console and copy over some information to
 your Xcode project. To follow this process, perform the following steps:
 
-1. Open up your TBMP Skeleton project settings. Select the "TBMP Skeleton" target and,
+1. In a terminal window, change directories to the <TBMPSkeletonNative> directory which contains the Podfile 
+and add the cocoapod project to the workspace.  To do this run `pod update`.
+2. Open the TBMPSkeletonSample workspace: `open TBMPSkeletonSample.xcworkspace`.
+3. Go to the project settings. Select the "TBMP Skeleton" target and,
   on the "General" tab, change the Bundle Identifier from `com.google.example.games.tbmpskel` to
   something appropriate for your Provisioning Profile. (It will probably look like
   `com.<your_company>.tbmpskel`)
-2. Click the "Info" tab and go down to the bottom where you see "URL Types". Expand
+4. Click the "Info" tab and go down to the bottom where you see "URL Types". Expand
   this and change the "Identifier" and "URL Schemes" from `com.example.TBMPSkeleton` to
   whatever you used in Step 1.
-3. Create your own application in the Play Console, as described in our [Developer
+5. Create your own application in the Play Console, as described in our [Developer
   Documentation](https://developers.google.com/games/services/console/enabling). Make
   sure you follow the "iOS" instructions for creating your client ID and linking
   your application.
@@ -53,14 +56,14 @@ your Xcode project. To follow this process, perform the following steps:
     * Again, you will be using the Bundle ID that you created in Step 1.
     * You can leave your App Store ID blank for testing purposes.
  	* Don't forget to turn on the "Turn-based multiplayer" switch!
-4. If you want to try out receiving invites and "it's your turn" notifications, you will 
+6. If you want to try out receiving invites and "it's your turn" notifications, you 
   need to get an APNS certificate from iTunes Connect and upload it to the developer console 
   as well. Please review our documentation for instructions on how to do this.
-5. Make a note of your client ID and application ID as described in the
+7. Make a note of your client ID and application ID as described in the
   documentation
-6. Once that's done, open up your `Constants.h` file, and replace the `CLIENT_ID` value
+8. Once that's done, open up your `Constants.h` file, and replace the `CLIENT_ID` value
   with your own OAuth2.0 client ID.
-7. Go to your TBMPSkeleton-info.plist file and replace the `GPGApplicationID` value with
+9. Go to your TBMPSkeleton-info.plist file and replace the `GPGApplicationID` value with
   the actual Applicaton ID of your game.
 
 That's it! Your application should be ready to run!  Give it a try, and add some word typing

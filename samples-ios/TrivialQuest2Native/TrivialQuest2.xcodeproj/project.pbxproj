@@ -8,11 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		284108E31958D42C0078BB6F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284108E21958D42C0078BB6F /* CoreTelephony.framework */; };
-		2891F78A1ACA3E28003C3552 /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2891F7851ACA3E28003C3552 /* GoogleOpenSource.framework */; };
-		2891F78B1ACA3E28003C3552 /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2891F7861ACA3E28003C3552 /* GooglePlus.bundle */; };
-		2891F78C1ACA3E28003C3552 /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2891F7871ACA3E28003C3552 /* GooglePlus.framework */; };
-		2891F78D1ACA3E28003C3552 /* gpg.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2891F7881ACA3E28003C3552 /* gpg.bundle */; };
-		2891F78E1ACA3E28003C3552 /* gpg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2891F7891ACA3E28003C3552 /* gpg.framework */; };
 		4B5B77B21923127200963C75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B77B11923127200963C75 /* Foundation.framework */; };
 		4B5B77B41923127200963C75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B77B31923127200963C75 /* CoreGraphics.framework */; };
 		4B5B77B61923127200963C75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B77B51923127200963C75 /* UIKit.framework */; };
@@ -21,7 +16,6 @@
 		4B5B77C51923127200963C75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5B77C31923127200963C75 /* Main.storyboard */; };
 		4B5B77C81923127200963C75 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4B5B77C71923127200963C75 /* ViewController.mm */; };
 		4B5B77CA1923127200963C75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B5B77C91923127200963C75 /* Images.xcassets */; };
-		4B5B77D11923127200963C75 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B77D01923127200963C75 /* XCTest.framework */; };
 		4B5B77D21923127200963C75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B77B11923127200963C75 /* Foundation.framework */; };
 		4B5B77D31923127200963C75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B77B51923127200963C75 /* UIKit.framework */; };
 		4B5B77DB1923127200963C75 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B5B77D91923127200963C75 /* InfoPlist.strings */; };
@@ -66,11 +60,6 @@
 
 /* Begin PBXFileReference section */
 		284108E21958D42C0078BB6F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		2891F7851ACA3E28003C3552 /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = ../Libraries/GoogleOpenSource.framework; sourceTree = "<group>"; };
-		2891F7861ACA3E28003C3552 /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = ../Libraries/GooglePlus.bundle; sourceTree = "<group>"; };
-		2891F7871ACA3E28003C3552 /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = ../Libraries/GooglePlus.framework; sourceTree = "<group>"; };
-		2891F7881ACA3E28003C3552 /* gpg.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = gpg.bundle; path = ../Libraries/gpg.bundle; sourceTree = "<group>"; };
-		2891F7891ACA3E28003C3552 /* gpg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gpg.framework; path = ../Libraries/gpg.framework; sourceTree = "<group>"; };
 		4B5B77AE1923127200963C75 /* TrivialQuest2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrivialQuest2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5B77B11923127200963C75 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4B5B77B31923127200963C75 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,7 +75,6 @@
 		4B5B77C71923127200963C75 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		4B5B77C91923127200963C75 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4B5B77CF1923127200963C75 /* TrivialQuest2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrivialQuest2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B5B77D01923127200963C75 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4B5B77D81923127200963C75 /* TrivialQuest2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TrivialQuest2Tests-Info.plist"; sourceTree = "<group>"; };
 		4B5B77DA1923127200963C75 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4B5B77DC1923127200963C75 /* TrivialQuest2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrivialQuest2Tests.m; sourceTree = "<group>"; };
@@ -123,14 +111,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2891F78C1ACA3E28003C3552 /* GooglePlus.framework in Frameworks */,
 				284108E31958D42C0078BB6F /* CoreTelephony.framework in Frameworks */,
 				4B5B7805192316FE00963C75 /* libc++.dylib in Frameworks */,
 				4B5B7803192316F800963C75 /* SystemConfiguration.framework in Frameworks */,
 				4B5B7801192316F000963C75 /* Security.framework in Frameworks */,
 				4B5B77FF192316E900963C75 /* QuartzCore.framework in Frameworks */,
 				4B5B77FD192316E100963C75 /* MediaPlayer.framework in Frameworks */,
-				2891F78A1ACA3E28003C3552 /* GoogleOpenSource.framework in Frameworks */,
 				4B5B77FB192316D900963C75 /* CoreText.framework in Frameworks */,
 				4B5B77F9192316D300963C75 /* CoreMotion.framework in Frameworks */,
 				4B5B77F7192316CC00963C75 /* CoreLocation.framework in Frameworks */,
@@ -140,7 +126,6 @@
 				4B5B77B41923127200963C75 /* CoreGraphics.framework in Frameworks */,
 				4B5B77B61923127200963C75 /* UIKit.framework in Frameworks */,
 				4B5B77B21923127200963C75 /* Foundation.framework in Frameworks */,
-				2891F78E1ACA3E28003C3552 /* gpg.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +133,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B5B77D11923127200963C75 /* XCTest.framework in Frameworks */,
 				4B5B77D31923127200963C75 /* UIKit.framework in Frameworks */,
 				4B5B77D21923127200963C75 /* Foundation.framework in Frameworks */,
 			);
@@ -179,11 +163,6 @@
 		4B5B77B01923127200963C75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2891F7851ACA3E28003C3552 /* GoogleOpenSource.framework */,
-				2891F7861ACA3E28003C3552 /* GooglePlus.bundle */,
-				2891F7871ACA3E28003C3552 /* GooglePlus.framework */,
-				2891F7881ACA3E28003C3552 /* gpg.bundle */,
-				2891F7891ACA3E28003C3552 /* gpg.framework */,
 				284108E21958D42C0078BB6F /* CoreTelephony.framework */,
 				4B5B7804192316FE00963C75 /* libc++.dylib */,
 				4B5B7802192316F800963C75 /* SystemConfiguration.framework */,
@@ -199,7 +178,6 @@
 				4B5B77B11923127200963C75 /* Foundation.framework */,
 				4B5B77B31923127200963C75 /* CoreGraphics.framework */,
 				4B5B77B51923127200963C75 /* UIKit.framework */,
-				4B5B77D01923127200963C75 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -358,9 +336,7 @@
 				4B5B782E192326E700963C75 /* gplus_signin_disabled.png in Resources */,
 				4B5B7825192326E700963C75 /* achievement_icon_ipad@2x.png in Resources */,
 				4B5B77BC1923127200963C75 /* InfoPlist.strings in Resources */,
-				2891F78D1ACA3E28003C3552 /* gpg.bundle in Resources */,
 				4B5B782A192326E700963C75 /* games_controller.png in Resources */,
-				2891F78B1ACA3E28003C3552 /* GooglePlus.bundle in Resources */,
 				4B5B7833192326E700963C75 /* gplus_signin_pressed@2x.png in Resources */,
 				4B5B782B192326E700963C75 /* games_controller@2x.png in Resources */,
 				4B5B782C192326E700963C75 /* games_controller_ipad.png in Resources */,
@@ -514,17 +490,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../Libraries",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrivialQuest2/TrivialQuest2-Prefix.pch";
 				INFOPLIST_FILE = "TrivialQuest2/TrivialQuest2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-lz",
-					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -538,17 +511,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../Libraries",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrivialQuest2/TrivialQuest2-Prefix.pch";
 				INFOPLIST_FILE = "TrivialQuest2/TrivialQuest2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-lz",
-					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

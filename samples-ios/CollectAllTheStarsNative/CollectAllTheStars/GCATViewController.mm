@@ -222,7 +222,7 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
 
 // We'll let every click increment the button a bit
 - (IBAction)levelButtonClicked:(id)sender {
-  int levelNum = [self.levelButtons indexOfObject:sender] + 1;
+  int levelNum = (int)[self.levelButtons indexOfObject:sender] + 1;
   int starNum = [self.gameModel getStarsForWorld:self.currentWorld andLevel:levelNum] + 1;
   if (starNum > 5) starNum = 0;
   [self.gameModel setStars:starNum forWorld:self.currentWorld andLevel:levelNum];
@@ -275,12 +275,12 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-  return [NSString stringWithFormat:@"World %d",row+1];
+  return [NSString stringWithFormat:@"World %ld",row+1];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-  self.pickerSelectedRow = row;
+  self.pickerSelectedRow = (int)row;
 }
 
 - (IBAction)changeWorld:(id)sender {

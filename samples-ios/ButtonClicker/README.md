@@ -39,14 +39,17 @@ To run Button Clicker on your own device, you will need to create
 your own version of the game in the Play Console and copy over some information to
 your Xcode project. To follow this process, perform the following steps:
 
-1. Open up your Button Clicker project settings. Select the "Button Clicker" target and,
+1, In a terminal window, change directories to this directory and add the cocoapod project
+    to the workspace.  To do this run `pod update`.
+2. Open the ButtonClicker workspace: `open ButtonClicker.xcworkspace`.
+3. Open project settings. Select the "Button Clicker" target and,
   on the "Summary" tab, change the Bundle Identifier from `com.example.ButtonClicker` to
   something appropriate for your Provisioning Profile. (It will probably look like
   `com.<your_company>.ButtonClicker`)
-2. Click the "Info" tab and go down to the bottom where you see "URL Types". Expand
+4. Click the "Info" tab and go down to the bottom where you see "URL Types". Expand
   this and change the "Identifier" and "URL Schemes" from `com.example.ButtonClicker` to
   whatever you used in Step 1.
-3. Create your own application in the Play Console, as described in our [Developer
+5. Create your own application in the Play Console, as described in our [Developer
   Documentation](https://developers.google.com/games/services/console/enabling). Make
   sure you follow the "iOS" instructions for creating your client ID and linking
   your application.
@@ -56,12 +59,12 @@ your Xcode project. To follow this process, perform the following steps:
     * Again, you will be using the Bundle ID that you created in Step 1.
     * You can leave your App Store ID blank for testing purposes.
  	* Don't forget to turn on the "Real-time multiplayer" switch!
-4. If you want to try out receiving invites, you will need to get an APNS certificate
+6. If you want to try out receiving invites, you will need to get an APNS certificate
   from iTunes Connect and upload it to the developer console as well. Please review our
   documentation for how to do this.
-5. Make a note of your client ID and application ID as described in the
+7. Make a note of your client ID and application ID as described in the
   documentation
-6. Once that's done, open up your `Constants.h` file, and replace the `CLIENT_ID` value
+8. Once that's done, open up your `Constants.h` file, and replace the `CLIENT_ID` value
   with your own OAuth2.0 client ID.
 
 That's it! Your application should be ready to run!  Give it a try, and add some button-clicking

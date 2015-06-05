@@ -346,7 +346,8 @@ GLfloat gCubeVertexData[216] =
 
 - (void)update
 {
-    float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
+    float aspectRatio = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
+    float aspect = fabsf(aspectRatio);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     
     self.effect.transform.projectionMatrix = projectionMatrix;

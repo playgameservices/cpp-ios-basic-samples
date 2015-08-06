@@ -15,7 +15,8 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <GooglePlus/GooglePlus.h>
+#import <GoogleSignIn.h>
+#import "Constants.h"
 
 #import "AppDelegate.h"
 #import "ButtonClickerEngine.h"
@@ -26,6 +27,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // Override point for customization after application launch.
+
+    [GIDSignIn sharedInstance].clientID = @CLIENT_ID;
 
   // Initialize GPG services
   ButtonClickerEngine::GetInstance().InitGooglePlayGameServices();
@@ -68,7 +71,7 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-  return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
+  return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

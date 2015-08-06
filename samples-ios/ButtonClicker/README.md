@@ -46,10 +46,7 @@ your Xcode project. To follow this process, perform the following steps:
   on the "Summary" tab, change the Bundle Identifier from `com.example.ButtonClicker` to
   something appropriate for your Provisioning Profile. (It will probably look like
   `com.<your_company>.ButtonClicker`)
-4. Click the "Info" tab and go down to the bottom where you see "URL Types". Expand
-  this and change the "Identifier" and "URL Schemes" from `com.example.ButtonClicker` to
-  whatever you used in Step 1.
-5. Create your own application in the Play Console, as described in our [Developer
+4. Create your own application in the Play Console, as described in our [Developer
   Documentation](https://developers.google.com/games/services/console/enabling). Make
   sure you follow the "iOS" instructions for creating your client ID and linking
   your application.
@@ -58,12 +55,20 @@ your Xcode project. To follow this process, perform the following steps:
   application.
     * Again, you will be using the Bundle ID that you created in Step 1.
     * You can leave your App Store ID blank for testing purposes.
- 	* Don't forget to turn on the "Real-time multiplayer" switch!
-6. If you want to try out receiving invites, you will need to get an APNS certificate
+    * Don't forget to turn on the "Real-time multiplayer" switch!
+5. If you want to try out receiving invites, you will need to get an APNS certificate
   from iTunes Connect and upload it to the developer console as well. Please review our
   documentation for how to do this.
-7. Make a note of your client ID and application ID as described in the
+6. Make a note of your client ID and application ID as described in the
   documentation
+7. Click the "Info" tab and go down to the bottom where you see "URL Types".
+    You need to add 2 URL types.  In one URL type, specify a unique string in
+    the Identifier field, and specify your client ID in reversed order in the
+    URL Schemas field. For example, if your client ID for iOS is
+    CLIENT_ID_CODE.apps.googleusercontent.com, then specify
+    com.googleusercontent.apps.CLIENT_ID_CODE in the URL Schemas field.
+     In the other URL type, specify a unique string in the Identifier field,
+    and specify your app's bundle identifier in the URL Schemas field.
 8. Once that's done, open up your `Constants.h` file, and replace the `CLIENT_ID` value
   with your own OAuth2.0 client ID.
 

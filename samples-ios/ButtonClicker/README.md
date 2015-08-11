@@ -13,8 +13,6 @@ Button Clicker consists of a number of files that might be of interest to you:
 * `ButtonClickerPlayer` contains a very simple class that represents our player in
 the game.
 
-* `Constants.h` contains the constants that you will need to run this game on your own.
-
 * `GameModel` is the game's model. It supplies information about all the players
 in the game for your ViewController.
 
@@ -62,15 +60,13 @@ your Xcode project. To follow this process, perform the following steps:
 6. Make a note of your client ID and application ID as described in the
   documentation
 7. Click the "Info" tab and go down to the bottom where you see "URL Types".
-    You need to add 2 URL types.  In one URL type, specify a unique string in
-    the Identifier field, and specify your client ID in reversed order in the
-    URL Schemas field. For example, if your client ID for iOS is
+    You need to add 2 URL types.  In one URL type, the Identifier needs to be
+     a unique string such as com.google.ReverseClientId.  Specify your client ID
+    in reversed order in the URL Schemas field. For example, if your client ID for iOS is
     CLIENT_ID_CODE.apps.googleusercontent.com, then specify
     com.googleusercontent.apps.CLIENT_ID_CODE in the URL Schemas field.
      In the other URL type, specify a unique string in the Identifier field,
-    and specify your app's bundle identifier in the URL Schemas field.
-8. Once that's done, open up your `Constants.h` file, and replace the `CLIENT_ID` value
-  with your own OAuth2.0 client ID.
+    such as "BundleId".  Specify your app's bundle identifier in the URL Schemas field.
 
 That's it! Your application should be ready to run!  Give it a try, and add some button-clicking
 excitement to your evening!

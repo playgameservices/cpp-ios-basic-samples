@@ -17,7 +17,6 @@
 
 #import "LobbyViewController.h"
 #import "ButtonClickerEngine.h"
-#import "Constants.h"
 
 @interface LobbyViewController ()<UIAlertViewDelegate, ButtonClickerGameDelegate, GIDSignInUIDelegate> {
   BOOL _currentlySigningIn;

@@ -16,7 +16,6 @@
 //  limitations under the License.
 
 #import <GoogleSignIn.h>
-#import "Constants.h"
 
 #import "AppDelegate.h"
 #import "ButtonClickerEngine.h"
@@ -27,8 +26,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // Override point for customization after application launch.
-
-    [GIDSignIn sharedInstance].clientID = @CLIENT_ID;
 
   // Initialize GPG services
   ButtonClickerEngine::GetInstance().InitGooglePlayGameServices();
@@ -116,25 +113,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   if ([topVC class] == [GameViewController class]) {
     [(UINavigationController *)self.window.rootViewController popToRootViewControllerAnimated:NO];
   }
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-  // Called as part of the transition from the background to the inactive state; here you can undo many of
-  // the changes made on entering the background.
-
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-  // Restart any tasks that were paused (or not yet started) while the application was inactive.
-  // If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-  // Called when the application is about to terminate. Save data if appropriate.
-  // See also applicationDidEnterBackground:.
 }
 
 @end

@@ -26,10 +26,20 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.example.ButtonClicker</string>
+			<string>com.google.BundleId</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.example.ButtonClicker</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.google.ReverseClientId</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.YOUR_CLIENT_ID</string>
 			</array>
 		</dict>
 	</array>

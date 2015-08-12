@@ -1,7 +1,7 @@
 # NativeGame Sample
 
 A sample application that demonstrates leaderboard and achievement calls from a native
-C++ application. 
+C++ application.
 This sample is using C++ NativeClient SDK with conjunction of ObjectiveC++.
 
 ## Code
@@ -28,12 +28,13 @@ achievement and one leaderboard.
   Documentation](https://developers.google.com/games/services/console/enabling). Make
   sure you follow the "iOS" instructions for creating your client ID and linking
   your application.
-    <strong>Note: Remember the Bundle ID, you will need to paste it 
+    <strong>Note: Remember the Bundle ID, you will need to paste it
          in a couple places in your app.</strong>
     You can leave your App Store ID blank for testing purposes.
-2. Make a note of your client ID and application ID as described in the
-  documentation.
-3. Create an achievement (or more if you want) and a leaderboard.
+2. Create an achievement named "Gone Native" (or a different name, but you will need
+  to modify the code to match the name).
+3. Create a leaderboard named "Native Leaders" (or a different name, but you will
+  need to modify the code to match the name).
 
 After you have configured the game on the Play Console, follow these steps:
 
@@ -43,20 +44,19 @@ to the workspace.  To do this run `pod update`.
 6. Open project settings. Select the "NativeGame" target and,
   on the "Summary" tab, change the Bundle Identifier to
   something appropriate for your Provisioning Profile. (It will probably look like
-  com.<your_company>.CollectAllTheStars) and the package name in the play console.
-7. Click the "Info" tab and go down to the bottom where you see "URL Types". Expand
-  this and change the "Identifier" and "URL Schemes" from the default package name to
-  whatever you used in Step 3.
-8. If you have already created this application in the Play Console (because you
-  have created the Android or web version of the game, for example), you can
-  skip steps 4 and 5 below. All you will need to do is...
-    * Link the iOS version of your game, as described in the "Link Your Platform-
-      Specific Apps" section of the console documentation
-    * Create a separate client ID for the iOS version of the game, as described in
-      the "Create a client ID" section of the [Console Documentation](https://developers.google.com/games/services/console/enabling).
-        * Use the Bundle ID that you created in Step 1.
-9. Once that's done, open up your `ViewController.mm` file, and replace the `CLIENT_ID` value
-  with your own OAuth2.0 client ID, Achievement ID and Leaderboard ID.
+  com.<your_company>.NativeGame) and the package name in the play console.
+7. Return to the Play Console, and in your game configuration, select Achievements.
+  At the bottom of the list, click "Get Resources" and select Objective-C.
+  Copy the definitions to the clipboard.  Then back in XCode, open the file
+  GPGSIds.h and paste the resource definitions.
+8. Click the "Info" tab and go down to the bottom where you see "URL Types".
+  You need to add 2 URL types.  In one URL type, the Identifier needs to be
+  a unique string such as com.google.ReverseClientId.  Specify your client ID
+  in reversed order in the URL Schemas field. For example, if your client ID for iOS is
+  YOUR_CLIENT_ID_CODE.apps.googleusercontent.com, then specify
+  com.googleusercontent.apps.YOUR_CLIENT_ID in the URL Schemas field.
+  In the other URL type, specify a unique string in the Identifier field,
+  such as "BundleId".  Specify your app's bundle identifier in the URL Schemas field.
 
-That's it! Your application should be ready to run! 
+That's it! Your application should be ready to run!
 

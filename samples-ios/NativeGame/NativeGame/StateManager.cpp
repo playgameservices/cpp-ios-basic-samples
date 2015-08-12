@@ -120,6 +120,7 @@ void StateManager::InitServices(gpg::PlatformConfiguration &pc,gpg::GameServices
           isSignedIn = false;
         callback( op, status);
       } )
+      .SetDefaultOnLog(gpg::LogLevel::VERBOSE)
       .Create(pc);
   }
   LOGI("Created");

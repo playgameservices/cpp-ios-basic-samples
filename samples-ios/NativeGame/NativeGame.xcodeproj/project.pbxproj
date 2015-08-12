@@ -82,6 +82,7 @@
 		28FBAEC418CEEDC60052FDDC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		28FBAEC618CEEDDB0052FDDC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		28FBAEC818CEEDEC0052FDDC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B0EAFCA01B7BBCAE0048D128 /* GPGSIds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPGSIds.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +174,7 @@
 				28FBAEB618CE87D20052FDDC /* StateManager.h */,
 				28E1302E18C9203E001075F0 /* Images.xcassets */,
 				28E1301618C9203E001075F0 /* Supporting Files */,
+				B0EAFCA01B7BBCAE0048D128 /* GPGSIds.h */,
 			);
 			path = NativeGame;
 			sourceTree = "<group>";

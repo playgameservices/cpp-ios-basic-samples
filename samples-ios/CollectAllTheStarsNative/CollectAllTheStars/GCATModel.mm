@@ -20,7 +20,7 @@
 
 #import "GCATModel.h"
 #import "GCATStarInventory.h"
-#import "GCATViewController.h"
+#import "GCATEngine.h"
 
 #define DEFAULT_SAVE_NAME "snapshotTemp"
 
@@ -43,6 +43,10 @@
   return self;
 }
 
+- (gpg::SnapshotManager&) snapshotManager {
+  return GCATEngine::GetInstance().Snapshots();
+}
+
 // Used to update starts after model changes, model-view.
 - (void) setViewController: (GCATViewController*) screenViewController{
   _screenViewController = screenViewController;
@@ -53,7 +57,7 @@
  */
 - (void) readCurrentSnapshot {
   NSLog(@"Reading snapshot");
-  gpg::SnapshotManager::ReadResponse const &response = self.screenViewController->service_->Snapshots().ReadBlocking(self.currentSnapshot);
+  gpg::SnapshotManager::ReadResponse const &response = [self snapshotManager].ReadBlocking(self.currentSnapshot);
   if (gpg::IsSuccess(response.status)) {
     NSLog(@"Successfully read %zu blocks", response.data.size());
     NSData* data = [NSData dataWithBytes:reinterpret_cast<const void *>(response.data.data())
@@ -71,7 +75,7 @@
  */
 - (void)saveSnapshotWithImage:(UIImage *)snapshotImage completionHandler:(DataUpdatedHandler)handler {
   NSLog(@"Saving snapshot");
-  
+
   std::string fileName;
   if (self.currentSnapshot.Valid() == false) {
     fileName = DEFAULT_SAVE_NAME;
@@ -79,61 +83,61 @@
   } else {
     fileName = self.currentSnapshot.FileName();
   }
-  
-  self.screenViewController->service_->Snapshots().Open(fileName,
-                                                        gpg::SnapshotConflictPolicy::MANUAL,
-                                                        [self, snapshotImage, handler](gpg::SnapshotManager::OpenResponse const & response) {
-                                                          if (IsSuccess(response.status)) {
-                                                            gpg::SnapshotMetadata metadata = response.data;
-                                                            if (response.conflict_id != "") {
-                                                              //Conflict detected
-                                                              NSLog(@"Snapshot conflict detected going to resolve that");
-                                                              [self resolveSnapshotWithBaseMetadata:response.conflict_original
-                                                                                     remoteMetadata:response.conflict_unmerged
-                                                                                         conflictId:response.conflict_id];
-                                                            }
-                                                            
-                                                            // Save the snapshot.
-                                                            self.currentSnapshot = response.data;
-                                                            [self commitCurrentSnapshotWithImage:snapshotImage completionHandler:handler];
-                                                          }
-                                                          else
-                                                          {
-                                                            //Failed, just call handler
-                                                            handler();
-                                                          }
-                                                        });
+  [self snapshotManager].Open(fileName,
+                              gpg::SnapshotConflictPolicy::MANUAL,
+                              [self, snapshotImage, handler](gpg::SnapshotManager::OpenResponse const & response) {
+                                if (IsSuccess(response.status)) {
+                                  gpg::SnapshotMetadata metadata = response.data;
+                                  if (response.conflict_id != "") {
+                                    //Conflict detected
+                                    NSLog(@"Snapshot conflict detected going to resolve that");
+                                    [self resolveSnapshotWithBaseMetadata:response.conflict_original
+                                                           remoteMetadata:response.conflict_unmerged
+                                                               conflictId:response.conflict_id];
+                                  }
+
+                                  // Save the snapshot.
+                                  self.currentSnapshot = response.data;
+                                  [self commitCurrentSnapshotWithImage:snapshotImage completionHandler:handler];
+                                }
+                                else
+                                {
+                                  //Failed, just call handler
+                                  handler();
+                                }
+                              });
 }
 
 /*
  * load snapshot
  */
-- (void)loadSnapshot:(DataUpdatedHandler)handler
+- (void)loadSnapshot: (DataUpdatedHandler)handler
 {
   if (self.currentSnapshot.Valid() == false)
   {
     handler();
     return;
   }
-  self.screenViewController->service_->Snapshots().Open(_currentSnapshot.FileName(),
-                                                        gpg::SnapshotConflictPolicy::MANUAL,
-                                                        [self, handler](gpg::SnapshotManager::OpenResponse const & response) {
-                                                          if (IsSuccess(response.status)) {
-                                                            gpg::SnapshotMetadata metadata = response.data;
-                                                            if (response.conflict_id != "") {
-                                                              //Conflict detected
-                                                              NSLog(@"Snapshot conflict detected going to resolve that");
-                                                              [self resolveSnapshotWithBaseMetadata:response.conflict_original
-                                                                                     remoteMetadata:response.conflict_unmerged
-                                                                                         conflictId:response.conflict_id];
-                                                            }
-                                                            
-                                                            // Save the snapshot.
-                                                            _currentSnapshot = response.data;
-                                                            [self readCurrentSnapshot];
-                                                            handler();
-                                                          }
-                                                        });
+
+  [self snapshotManager].Open(_currentSnapshot.FileName(),
+                              gpg::SnapshotConflictPolicy::MANUAL,
+                              [self, handler](gpg::SnapshotManager::OpenResponse const & response) {
+                                if (IsSuccess(response.status)) {
+                                  gpg::SnapshotMetadata metadata = response.data;
+                                  if (response.conflict_id != "") {
+                                    //Conflict detected
+                                    NSLog(@"Snapshot conflict detected going to resolve that");
+                                    [self resolveSnapshotWithBaseMetadata:response.conflict_original
+                                                           remoteMetadata:response.conflict_unmerged
+                                                               conflictId:response.conflict_id];
+                                  }
+
+                                  // Save the snapshot.
+                                  _currentSnapshot = response.data;
+                                  [self readCurrentSnapshot];
+                                  handler();
+                                }
+                              });
 }
 
 
@@ -146,38 +150,40 @@
 - (void)resolveSnapshotWithBaseMetadata :(const gpg::SnapshotMetadata&)conflictingSnapshotBase
                           remoteMetadata:(const gpg::SnapshotMetadata&)conflictingSnapshotRemote
                               conflictId:(std::string)conflictId {
-  
+
   NSLog(@"Resolving snapshot conflicts: %s >> %s",
         conflictingSnapshotBase.Description().c_str(),
         conflictingSnapshotRemote.Description().c_str());
-  
+
   gpg::SnapshotMetadata final = conflictingSnapshotBase; // The resolved snapshot.
-  
+
   // For this sample, we use the snapshot with the latest timestamp. Alternatively, you could
   // take the union of the two snapshots as is demonstrated in the Android version.
   if (conflictingSnapshotRemote.LastModifiedTime() >
       conflictingSnapshotBase.LastModifiedTime()) {
     final = conflictingSnapshotRemote;
   }
-  
+
   self.currentSnapshot = final;
-  
+
   //Resolve conflict
   gpg::SnapshotMetadataChange::Builder builder;
   gpg::SnapshotMetadataChange metadata_change =
   builder.SetDescription("CollectAllTheStar savedata ").Create();
-  
+
   //For now, we would just choose the newest version of snapshot
   gpg::SnapshotManager::CommitResponse commitResponse =
-  self.screenViewController->service_->Snapshots().ResolveConflictBlocking(final,
-                                                                           metadata_change,
-                                                                           conflictId);
+  [self snapshotManager].ResolveConflictBlocking(final,
+                                                 metadata_change,
+                                                 conflictId);
+
   if (IsSuccess(commitResponse.status)) {
     NSLog(@"Conflict resolution succeeded");
     [self readCurrentSnapshot];
   } else {
     NSLog(@"Conflict resolution failed error: %d", commitResponse.status);
   }
+
 }
 
 /**
@@ -189,7 +195,7 @@
     handler();
     return;
   }
-  
+
   //Convert UIImage to png stl::vector
   NSData *imageData = UIImagePNGRepresentation(snapshotImage);
   std::vector<uint8_t> vecImage;
@@ -198,7 +204,7 @@
 
   //Played time
   std::chrono::minutes min(1);
-  
+
   // Create a snapshot change to be committed with a description, cover image, and play time.
   gpg::SnapshotMetadataChange::Builder builder;
   gpg::SnapshotMetadataChange metadata_change =
@@ -206,19 +212,19 @@
   .SetPlayedTime(self.currentSnapshot.PlayedTime() + min)
   .SetCoverImageFromPngData(vecImage)
   .Create();
-  
+
   //Convert NSData to stl::vector
   NSData* data = [self.inventory getCloudSaveData];
   std::vector<uint8_t> v;
   v.assign(reinterpret_cast<const uint8_t*>([data bytes]),
            reinterpret_cast<const uint8_t*>([data bytes]) + [data length]);
-  
+
   // Save the snapshot.
   gpg::SnapshotManager::CommitResponse commitResponse =
-  self.screenViewController->service_->Snapshots().CommitBlocking(self.currentSnapshot,
-                                                                  metadata_change,
-                                                                  v);
-  
+  [self snapshotManager].CommitBlocking(self.currentSnapshot,
+                                        metadata_change,
+                                        v);
+
   if (IsSuccess(commitResponse.status)) {
     NSLog(@"Successfully saved %s", self.currentSnapshot.Description().c_str());
   } else {

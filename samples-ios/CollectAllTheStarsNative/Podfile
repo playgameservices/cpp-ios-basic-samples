@@ -1,5 +1,8 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '8.0'
+platform :ios, '7.0'
 
-pod 'GooglePlayGames', '~> 4.4'
+source  'sso://user/wilkinsonclay/specs'
+source 'https://github.com/CocoaPods/Specs.git'
+
+pod 'GooglePlayGames', '~> 5.0'
 

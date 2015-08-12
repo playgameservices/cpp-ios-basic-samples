@@ -13,8 +13,6 @@ you:
 * `GCATAppDelegate` contains a little code required to handle sign-in (but not
   much -- just the URL handler).
 
-* `GCATConstants` contains our game's client ID
-
 * `GCATGameModel` is the game's model. This is where all the interesting logic
   is to load and save game state from the cloud.
 
@@ -60,10 +58,7 @@ perform the following steps:
   something appropriate for your Provisioning Profile. (It will probably look like
   com.<your_company>.CollectAllTheStars)
     * If you plan on only running this on an emulator, you can leave it as-is.
-2. Click the "Info" tab and go down to the bottom where you see "URL Types". Expand
-  this and change the "Identifier" and "URL Schemes" from `com.example.CollectAllTheStars` to
-  whatever you used in Step 1.
-3. If you have already created this application in the Play Console (because you
+4. If you have already created this application in the Play Console (because you
   have created the Android or web version of the game, for example), you can
   skip steps 4 and 5 below. All you will need to do is...
     * Link the iOS version of your game, as described in the "Link Your Platform-
@@ -71,18 +66,25 @@ perform the following steps:
     * Create a separate client ID for the iOS version of the game, as described in
       the "Create a client ID" section of the [Console Documentation](https://developers.google.com/games/services/console/enabling).
         * Use the Bundle ID that you created in Step 1.
-4. Create your own application in the Play Console, as described in our [Developer
+5. Create your own application in the Play Console, as described in our [Developer
   Documentation](https://developers.google.com/games/services/console/enabling). Make
   sure you follow the "iOS" instructions for creating your client ID and linking
   your application.
     * Again, you will be using the Bundle ID that you created in Step 1.
     * You can leave your App Store ID blank for testing purposes.
-5. Make a note of your client ID and application ID as described in the
-  documentation
-6. Once that's done, open up your `Constants.h` file, and replace the `CLIENT_ID` value
-  with your own OAuth2.0 client ID.
+6. Make a note of your client ID and application ID as described in the
+  documentation.
+7. Click the "Info" tab and go down to the bottom where you see "URL Types".
+  You need to add 2 URL types.  In one URL type, the Identifier needs to be
+  a unique string such as com.google.ReverseClientId.  Specify your client ID
+  in reversed order in the URL Schemas field. For example, if your client ID for iOS is
+  YOUR_CLIENT_ID_CODE.apps.googleusercontent.com, then specify
+  com.googleusercontent.apps.CLIENT_ID_CODE in the URL Schemas field.
+  In the other URL type, specify a unique string in the Identifier field,
+  such as "BundleId".  Specify your app's bundle identifier in the URL Schemas field.
 
-That's it! Your application should be ready to run! 
+
+That's it! Your application should be ready to run!
 
 ## Troubleshooting / Known Issues
 

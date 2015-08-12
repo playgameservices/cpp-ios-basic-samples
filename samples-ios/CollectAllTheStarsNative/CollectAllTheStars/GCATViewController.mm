@@ -17,14 +17,12 @@
 //  limitations under the License.
 //
 //
-
-#import "GCATConstants.h"
+#import <GoogleSignIn.h>
 #import "GCATViewController.h"
 #import "GCATModel.h"
+#import "GCATEngine.h"
 
-#include "gpg/gpg.h"
-
-@interface GCATViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate>
+@interface GCATViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UIActionSheetDelegate, GCATEngineDelegate>
 @property (nonatomic) int currentWorld;
 @property (nonatomic) int pickerSelectedRow;
 @property (nonatomic, strong) GCATModel *gameModel;
@@ -59,43 +57,12 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
 
 @implementation GCATViewController
 
-# pragma mark - Sign-in functions
--(void)startGoogleGamesSignIn
-{
-  gpg::IosPlatformConfiguration platform_configuration;
-  platform_configuration.SetClientID(CLIENT_ID)
-  .SetOptionalViewControllerForPopups(self);
-  
-  if (service_ == nullptr) {
-    // Game Services have not been initialized, create a new Game Services.
-    gpg::GameServices::Builder builder;
-    service_ = builder.SetOnAuthActionStarted([self](gpg::AuthOperation op) {
-      [self OnAuthActionStarted:op];
-    })
-    .SetOnAuthActionFinished(
-                             [self](gpg::AuthOperation op, gpg::AuthStatus status) {
-                               [self OnAuthActionFinished:op status:status];
-                             })
-    .SetDefaultOnLog(gpg::LogLevel::VERBOSE)  //For debugging log
-    .EnableSnapshots()                        //Enable Snapshot
-    .Create(platform_configuration);
-  }
-}
-
-/*
- * Callback: Authentication started
- */
-- (void)OnAuthActionStarted:(gpg::AuthOperation) op
-{
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [self refreshButtons:NO];
-  });
-}
-
 /*
  * Callback: Authentication finishes
  */
-- (void)OnAuthActionFinished:(gpg::AuthOperation) op status:(gpg::AuthStatus)status {
+- (void) authFinished:(gpg::AuthOperation)op status:(gpg::AuthStatus) status{
+  NSLog(@"** InView!!  op: %d  status = %d", op, status);
+
   if(gpg::IsSuccess(status))
   {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -116,6 +83,12 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
   }
 }
 
+- (void) authStarted:(gpg::AuthOperation)op {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self refreshButtons:NO];
+  });
+}
+
 // Refresh our buttons depending on whether or not the user has signed in to
 // Play Games
 -(void)refreshButtons:(BOOL)b
@@ -126,7 +99,7 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
     }
     self.worldLabel.enabled = b;
     self.changeWorldButton.enabled = b;
-    
+
     if (self.gameModel.currentSnapshot.Valid() == false)
     {
       self.loadButton.enabled = NO;
@@ -136,7 +109,7 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
 
     self.saveButton.enabled = b;
     self.listSnapshotsButton.enabled = b;
-    
+
     self.signInButton.enabled = b;
     if (b) {
       [self.indicator stopAnimating];
@@ -148,10 +121,14 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
 
 - (IBAction)signInPressed:(id)sender {
   // Start authorization
-  if (service_->IsAuthorized()) {
-    service_->SignOut();
+  if (GCATEngine::GetInstance().IsSignedIn()) {
+    GCATEngine::GetInstance().SignOut();
+
   } else {
-    service_->StartAuthorizationUI();
+    GCATEngine::GetInstance().StartSignIn();
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self refreshButtons:NO];
+    });
   }
 }
 
@@ -160,37 +137,37 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
   const bool ALLOW_CREATE_SNAPSHOT_INUI = true;
   const bool ALLOW_DELETE_SNAPSHOT_INUI = true;
   const char* const SNAPSHOT_UI_TITLE = "Collect All The Stars";
-  
+
   [self refreshButtons:NO];
-  service_->Snapshots().ShowSelectUIOperation(
-                                              ALLOW_CREATE_SNAPSHOT_INUI,
-                                              ALLOW_DELETE_SNAPSHOT_INUI,
-                                              MAX_SNAPSHOTS,
-                                              SNAPSHOT_UI_TITLE,
-                                              [self](gpg::SnapshotManager::SnapshotSelectUIResponse const & response) {
-                                                NSLog(@"Snapshot selected");
-                                                if (IsSuccess(response.status)) {
-                                                  if (response.data.Valid()) {
-                                                    NSLog(@"Description: %s", response.data.Description().c_str());
-                                                    NSLog(@"FileName %s", response.data.FileName().c_str());
-                                                    
-                                                    //Opening the snapshot data
-                                                    self.gameModel.currentSnapshot = response.data;
-                                                    [self.gameModel loadSnapshot:^()
-                                                     {
-                                                       [self refreshButtons:YES];
-                                                     }];
-                                                  } else {
-                                                    NSLog(@"Creating new snapshot");
-                                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                                      [self saveToTheCloud];
-                                                    });
-                                                  }
-                                                } else {
-                                                  NSLog(@"ShowSelectUIOperation returns an error %d", response.status);
-                                                  [self refreshButtons:YES];
-                                                }
-                                              });
+  GCATEngine::GetInstance().Snapshots().ShowSelectUIOperation(
+                                                              ALLOW_CREATE_SNAPSHOT_INUI,
+                                                              ALLOW_DELETE_SNAPSHOT_INUI,
+                                                              MAX_SNAPSHOTS,
+                                                              SNAPSHOT_UI_TITLE,
+                                                              [self](gpg::SnapshotManager::SnapshotSelectUIResponse const & response) {
+                                                                NSLog(@"Snapshot selected");
+                                                                if (IsSuccess(response.status)) {
+                                                                  if (response.data.Valid()) {
+                                                                    NSLog(@"Description: %s", response.data.Description().c_str());
+                                                                    NSLog(@"FileName %s", response.data.FileName().c_str());
+
+                                                                    //Opening the snapshot data
+                                                                    self.gameModel.currentSnapshot = response.data;
+                                                                    [self.gameModel loadSnapshot:^()
+                                                                     {
+                                                                       [self refreshButtons:YES];
+                                                                     }];
+                                                                  } else {
+                                                                    NSLog(@"Creating new snapshot");
+                                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                                      [self saveToTheCloud];
+                                                                    });
+                                                                  }
+                                                                } else {
+                                                                  NSLog(@"ShowSelectUIOperation returns an error %d", response.status);
+                                                                  [self refreshButtons:YES];
+                                                                }
+                                                              });
 }
 
 // In a real game, we'd probably want to save and load behind the scenes.
@@ -198,7 +175,6 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
 // different scenarios.
 -(void)saveToTheCloud {
   [self refreshButtons:NO];
-  
   [self.gameModel saveSnapshotWithImage:[self takeScreenshot] completionHandler:^{
     [self refreshStarDisplay];
     [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
@@ -207,7 +183,6 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
 }
 
 - (void)loadFromTheCloud {
-  
   [self refreshButtons:NO];
 
   [self.gameModel loadSnapshot:^{
@@ -236,7 +211,6 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
   NSString *fullStar = [NSString stringWithCharacters:&blackStar length:1];
   unichar whitestar = 0x2606;
   NSString *emptyStar = [NSString stringWithCharacters:&whitestar length:1];
-  
   for (int i=0; i<[self.levelButtons count]; i++) {
     int level = i+1;
     int starCount = [self.gameModel getStarsForWorld:self.currentWorld andLevel:level];
@@ -294,11 +268,9 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
   pickerView.delegate = self;
   pickerView.showsSelectionIndicator = YES;    // note this is default to NO
   [pickerView selectRow:self.currentWorld - 1 inComponent:0 animated:YES];
-  
   [menu addSubview:pickerView];
   [menu showInView:self.view];
   [menu setBounds:CGRectMake(0,0,320, 700)];
-  
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -320,7 +292,6 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
   [sourceImage drawAtPoint:CGPointMake(0, -160)];
   UIImage *croppedImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
-  
   return croppedImage;
 }
 
@@ -339,13 +310,13 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
   self.currentWorld = 1;
   self.gameModel = [[GCATModel alloc] init];
   [self.gameModel setViewController: self];
-  
   NSLog(@"Init GameServices");
-  [self startGoogleGamesSignIn];
+  
+  GCATEngine::GetInstance().InitGooglePlayGameServices(self,self);
+  GCATEngine::GetInstance().StartSignIn();
   
   [self refreshButtons:NO];
 }
-
 
 -(void)viewWillAppear:(BOOL)animated
 {

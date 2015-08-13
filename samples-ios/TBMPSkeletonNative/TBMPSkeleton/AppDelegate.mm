@@ -16,9 +16,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <GooglePlus/GooglePlus.h>
 
 #import "AppDelegate.h"
+#import <GoogleSignIn.h>
 
 #import "LobbyViewController.h"
 
@@ -32,11 +32,11 @@
   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
    (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert |
     UIRemoteNotificationTypeSound)];
-  
+
   // Look to see if our application was launched from a notification
   NSDictionary *remoteNotification =
   [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-  
+
   // If one exists, see if it's a game invitation
   if (remoteNotification) {
     if (gpg::TryHandleNotificationFromLaunchOptions(remoteNotification)) {
@@ -55,7 +55,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-  return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
+  return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (void)application:(UIApplication *)application

@@ -66,7 +66,6 @@
 		49D768C218CBCAB3007FDE22 /* TBMPSkeletonTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TBMPSkeletonTests-Info.plist"; sourceTree = "<group>"; };
 		49D768C418CBCAB3007FDE22 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49D768C618CBCAB3007FDE22 /* TBMPSkeletonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TBMPSkeletonTests.m; sourceTree = "<group>"; };
-		49D768D018CBCB4F007FDE22 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		49D768D118CBCB4F007FDE22 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		49D768D218CBCB4F007FDE22 /* GameData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameData.mm; sourceTree = "<group>"; };
 		49D768D318CBCB4F007FDE22 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
@@ -170,7 +169,6 @@
 				49D768AA18CBCAB3007FDE22 /* AppDelegate.h */,
 				49D768AB18CBCAB3007FDE22 /* AppDelegate.mm */,
 				49D768AD18CBCAB3007FDE22 /* Main.storyboard */,
-				49D768D018CBCB4F007FDE22 /* Constants.h */,
 				49D768D118CBCB4F007FDE22 /* GameData.h */,
 				49D768D218CBCB4F007FDE22 /* GameData.mm */,
 				49D768D318CBCB4F007FDE22 /* GameViewController.h */,

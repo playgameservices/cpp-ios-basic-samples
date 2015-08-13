@@ -18,14 +18,14 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import <GooglePlus/GooglePlus.h>
+#import <GoogleSignIn.h>
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-/** Handles the URL for Sign-In. 
+/** Handles the URL for Sign-In.
  *  @param application The app receiving the URL.
  *  @param url The URL passed to the app.
  *  @param sourceApplication The
@@ -34,8 +34,8 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    NSLog(@"URL received");
-    return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    NSLog(@"URL received: %@", url);
+    return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -45,7 +45,7 @@
     // Override point for customization after application launch.
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
   // Sent when the application is about to move from active to inactive state. This can occur

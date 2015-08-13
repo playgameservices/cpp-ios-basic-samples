@@ -15,6 +15,8 @@ you:
 * `StateManager` contains the code to manage the signin state, and make the
    API calls to interact with the game services.
 
+* `GPGSIds.h` contains the game services resource IDs copied from the play console.
+
 * `ViewController` is the ViewController for the game itself. It contains much
   of the logic to display the user interface.  ViewController.mm also has the constants
   used to reference the achievement and leaderboard.

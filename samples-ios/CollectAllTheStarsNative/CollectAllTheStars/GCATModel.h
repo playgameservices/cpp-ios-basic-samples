@@ -28,7 +28,7 @@ typedef void(^DataUpdatedHandler)(void);
 
 - (void)readCurrentSnapshot;
 - (void)loadSnapshot:(DataUpdatedHandler)handler;
-- (void)saveSnapshotWithImage: (UIImage *)snapshotImage completionHandler:(DataUpdatedHandler)handler;
+- (void)saveSnapshotWithImage: (bool)newSave image:(UIImage *)snapshotImage completionHandler:(DataUpdatedHandler)handler;
 - (void)setViewController: (GCATViewController*) screenViewController;
 - (void)setStars:(int)stars forWorld:(int)world andLevel:(int)level;
 - (int)getStarsForWorld:(int)world andLevel:(int)level;

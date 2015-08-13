@@ -62,6 +62,7 @@ NSString *const kJSONLevelsKey = @"levels";
     inv.starDict = [[savedState objectForKey:kJSONLevelsKey] mutableCopy];
   } else {
     // Otherwise, we're just going to stick with our empty inventory
+    NSLog(@"unknown version %@, so keeping what we have",[savedState objectForKey:kJSONVersionKey]);
   }
   return inv;
 }

@@ -29,7 +29,6 @@
 @property (nonatomic, strong) NSNumber *starSaveSlot;
 @property (nonatomic, copy) DataUpdatedHandler updatedHandler;
 @property (nonatomic, strong) GCATStarInventory *inventory;
-@property (nonatomic, weak) GCATViewController* screenViewController;
 @end
 
 @implementation GCATModel
@@ -47,11 +46,6 @@
   return GCATEngine::GetInstance().Snapshots();
 }
 
-// Used to update starts after model changes, model-view.
-- (void) setViewController: (GCATViewController*) screenViewController{
-  _screenViewController = screenViewController;
-}
-
 /*
  * Read snapshot from cloud
  */
@@ -63,7 +57,6 @@
     NSData* data = [NSData dataWithBytes:reinterpret_cast<const void *>(response.data.data())
                                   length:response.data.size()];
     self.inventory = [GCATStarInventory starInventoryFromCloudData:data];
-    [self.screenViewController refreshStarDisplay];
   }
   else {
     NSLog(@"Error while loading snapshot data: %d", response.status);
@@ -71,34 +64,48 @@
 }
 
 /*
- * save snapshop
+ * save snapshot
  */
-- (void)saveSnapshotWithImage:(UIImage *)snapshotImage completionHandler:(DataUpdatedHandler)handler {
+- (void)saveSnapshotWithImage: (bool)newSave image:(UIImage *)snapshotImage completionHandler:(DataUpdatedHandler)handler {
   NSLog(@"Saving snapshot");
 
   std::string fileName;
-  if (self.currentSnapshot.Valid() == false) {
-    fileName = DEFAULT_SAVE_NAME;
+  std::string description;
+  if (self.currentSnapshot.Valid() == false || newSave) {
+    NSString* newName = [self makeNewFileName];
+    fileName = newName.UTF8String;
+    description = [NSString stringWithFormat:@"Saved on iOS: %s",fileName.c_str()].UTF8String;
     NSLog(@"Creating new snapshot %s", fileName.c_str());
   } else {
     fileName = self.currentSnapshot.FileName();
+    description = self.currentSnapshot.Description();
   }
   [self snapshotManager].Open(fileName,
                               gpg::SnapshotConflictPolicy::MANUAL,
-                              [self, snapshotImage, handler](gpg::SnapshotManager::OpenResponse const & response) {
+                              [self, snapshotImage, handler,newSave, fileName, description](gpg::SnapshotManager::OpenResponse const & response) {
+
+                                NSLog(@"Opened %s: status is %d conflict id: %s", fileName.c_str(), response.status, response.conflict_id.c_str());
                                 if (IsSuccess(response.status)) {
+
                                   gpg::SnapshotMetadata metadata = response.data;
                                   if (response.conflict_id != "") {
                                     //Conflict detected
                                     NSLog(@"Snapshot conflict detected going to resolve that");
-                                    [self resolveSnapshotWithBaseMetadata:response.conflict_original
+                                    gpg::ResponseStatus rsp = [self resolveSnapshotWithBaseMetadata:response.conflict_original
                                                            remoteMetadata:response.conflict_unmerged
                                                                conflictId:response.conflict_id];
+                                    if(gpg::IsSuccess(rsp)) {
+                                      // re-call save which needs to open the file again.
+                                      [self saveSnapshotWithImage:newSave image:snapshotImage completionHandler:handler];
+                                      return;
+
+                                    }
+
                                   }
 
                                   // Save the snapshot.
                                   self.currentSnapshot = response.data;
-                                  [self commitCurrentSnapshotWithImage:snapshotImage completionHandler:handler];
+                                  [self commitCurrentSnapshotWithImage:description image:snapshotImage completionHandler:handler];
                                 }
                                 else
                                 {
@@ -127,9 +134,18 @@
                                   if (response.conflict_id != "") {
                                     //Conflict detected
                                     NSLog(@"Snapshot conflict detected going to resolve that");
-                                    [self resolveSnapshotWithBaseMetadata:response.conflict_original
+                                    gpg::ResponseStatus rsp = [self resolveSnapshotWithBaseMetadata:response.conflict_original
                                                            remoteMetadata:response.conflict_unmerged
                                                                conflictId:response.conflict_id];
+                                    if (gpg::IsSuccess(rsp)) {
+                                      // call load again so that the resolved snapshot is opened.
+                                      [self loadSnapshot:handler];
+                                      return;
+                                    }
+                                    else {
+                                      NSLog(@"Cannot resolve conflict: %d", rsp);
+                                      return;
+                                    }
                                   }
 
                                   // Save the snapshot.
@@ -147,7 +163,7 @@
  * In this sample, we just take the newer of the conflicting snapshots, an alternative would
  * be to merge the data.
  */
-- (void)resolveSnapshotWithBaseMetadata :(const gpg::SnapshotMetadata&)conflictingSnapshotBase
+- (gpg::ResponseStatus)resolveSnapshotWithBaseMetadata :(const gpg::SnapshotMetadata&)conflictingSnapshotBase
                           remoteMetadata:(const gpg::SnapshotMetadata&)conflictingSnapshotRemote
                               conflictId:(std::string)conflictId {
 
@@ -169,7 +185,7 @@
   //Resolve conflict
   gpg::SnapshotMetadataChange::Builder builder;
   gpg::SnapshotMetadataChange metadata_change =
-  builder.SetDescription("CollectAllTheStar savedata ").Create();
+  builder.SetDescription(self.currentSnapshot.Description()).Create();
 
   //For now, we would just choose the newest version of snapshot
   gpg::SnapshotManager::CommitResponse commitResponse =
@@ -177,19 +193,16 @@
                                                  metadata_change,
                                                  conflictId);
 
-  if (IsSuccess(commitResponse.status)) {
-    NSLog(@"Conflict resolution succeeded");
-    [self readCurrentSnapshot];
-  } else {
-    NSLog(@"Conflict resolution failed error: %d", commitResponse.status);
+  if (gpg::IsSuccess(commitResponse.status)) {
+    self.currentSnapshot = commitResponse.data;
   }
-
+  return commitResponse.status;
 }
 
 /**
  * Saves the current Snapshot object stored in the
  */
-- (void)commitCurrentSnapshotWithImage:(UIImage *)snapshotImage completionHandler:(DataUpdatedHandler)handler {
+- (void)commitCurrentSnapshotWithImage:(std::string) description image:(UIImage *)snapshotImage completionHandler:(DataUpdatedHandler)handler {
   if (self.currentSnapshot.Valid() == false) {
     NSLog(@"Error while committing snapshot, no current snapshot");
     handler();
@@ -205,10 +218,13 @@
   //Played time
   std::chrono::minutes min(1);
 
+  if(description.empty()) {
+    description = "Saved via iOS NativClient";
+  }
   // Create a snapshot change to be committed with a description, cover image, and play time.
   gpg::SnapshotMetadataChange::Builder builder;
   gpg::SnapshotMetadataChange metadata_change =
-  builder.SetDescription("Saved via iOS NativClient")
+  builder.SetDescription(description)
   .SetPlayedTime(self.currentSnapshot.PlayedTime() + min)
   .SetCoverImageFromPngData(vecImage)
   .Create();
@@ -240,6 +256,15 @@
 
 - (int)getStarsForWorld:(int)world andLevel:(int)level {
   return [self.inventory getStarsForWorld:world andLevel:level];
+}
+
+- (NSString *) makeNewFileName {
+  NSDateFormatter *df = [[NSDateFormatter alloc] init];
+  [df setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+
+  NSDate *now = [[NSDate alloc] init];
+
+  return [@"iOS Save_" stringByAppendingString:[df stringFromDate:now]];
 }
 
 @end

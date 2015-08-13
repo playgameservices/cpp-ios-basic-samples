@@ -155,12 +155,13 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
                                                                     self.gameModel.currentSnapshot = response.data;
                                                                     [self.gameModel loadSnapshot:^()
                                                                      {
+                                                                       [self refreshStarDisplay];
                                                                        [self refreshButtons:YES];
                                                                      }];
                                                                   } else {
                                                                     NSLog(@"Creating new snapshot");
                                                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                                                      [self saveToTheCloud];
+                                                                      [self saveToTheCloud: YES];
                                                                     });
                                                                   }
                                                                 } else {
@@ -173,9 +174,9 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
 // In a real game, we'd probably want to save and load behind the scenes.
 // Here we're calling these explicitly through buttons so you can try out
 // different scenarios.
--(void)saveToTheCloud {
+-(void)saveToTheCloud: (bool)newSave {
   [self refreshButtons:NO];
-  [self.gameModel saveSnapshotWithImage:[self takeScreenshot] completionHandler:^{
+  [self.gameModel saveSnapshotWithImage:newSave image:[self takeScreenshot] completionHandler:^{
     [self refreshStarDisplay];
     [self.saveButton setTitle:@"Save" forState:UIControlStateNormal];
     [self refreshButtons:YES];
@@ -232,7 +233,7 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
 
 // Manual save to a snapshot.
 - (IBAction)saveWasPressed:(id)sender {
-  [self saveToTheCloud];
+  [self saveToTheCloud: NO];
 }
 
 
@@ -309,12 +310,11 @@ static NSString * const kDeclinedGooglePreviously = @"UserDidDeclineGoogleSignIn
                        self.level12Button, nil];
   self.currentWorld = 1;
   self.gameModel = [[GCATModel alloc] init];
-  [self.gameModel setViewController: self];
   NSLog(@"Init GameServices");
-  
+
   GCATEngine::GetInstance().InitGooglePlayGameServices(self,self);
   GCATEngine::GetInstance().StartSignIn();
-  
+
   [self refreshButtons:NO];
 }
 

@@ -44,21 +44,22 @@ direct reference to the quest IDs.
 
 After you have configured the game on the Play Console, follow these steps:
 
-4. In a terminal window, change directories to this directory and add the cocoapod project
-to the workspace.  To do this run `pod update`.
-5. Open the TrivialQuest2 workspace: `open TrivialQuest2.xcworkspace`.
-6. Open project settings. Select the "TrivialQuest2" target and,
+1. In a terminal window, change directories to this directory and add the cocoapod project
+  to the workspace.  To do this run `pod update`.
+2. Open the TrivialQuest2 workspace: `open TrivialQuest2.xcworkspace`.
+3. Open project settings. Select the "TrivialQuest2" target and,
   on the "Summary" tab, change the Bundle Identifier to
   what you entered in the Play Console.
-7. Click the "Info" tab and go down to the bottom where you see "URL Types".
+4. Click the "Info" tab and go down to the bottom where you see "URL Types".
   You need to add 2 URL types.  In one URL type, the Identifier needs to be
-  a unique string such as com.google.ReverseClientId.  Specify your client ID
-  in reversed order in the URL Schemas field. For example, if your client ID for iOS is
-  YOUR_CLIENT_ID_CODE.apps.googleusercontent.com, then specify
-  com.googleusercontent.apps.YOUR_CLIENT_ID in the URL Schemas field.
+  the unique string `com.google.ReverseClientId`.  Specify your client ID
+  in reversed order in the URL Schemas field. For example, if your client ID
+  for iOS is `YOUR_CLIENT_ID.apps.googleusercontent.com`, then specify
+  `com.googleusercontent.apps.YOUR_CLIENT_ID` in the URL Schemas field.
   In the other URL type, specify a unique string in the Identifier field,
-  such as "BundleId".  Specify your app's bundle identifier in the URL Schemas field.
-8. Return to the Play Console, and in your game configuration, select Events.
+  `com.google.BundleId`.  Specify your app's bundle identifier in the
+  URL Schemas field.
+5. Return to the Play Console, and in your game configuration, select Events.
   At the bottom of the list, click "Get Resources" and select Objective-C.
   Copy the definitions to the clipboard.  Then back in XCode, open the file
   Constants.h and paste the resource definitions.

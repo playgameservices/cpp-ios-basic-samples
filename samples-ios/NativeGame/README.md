@@ -53,12 +53,13 @@ to the workspace.  To do this run `pod update`.
   GPGSIds.h and paste the resource definitions.
 8. Click the "Info" tab and go down to the bottom where you see "URL Types".
   You need to add 2 URL types.  In one URL type, the Identifier needs to be
-  a unique string such as com.google.ReverseClientId.  Specify your client ID
-  in reversed order in the URL Schemas field. For example, if your client ID for iOS is
-  YOUR_CLIENT_ID_CODE.apps.googleusercontent.com, then specify
-  com.googleusercontent.apps.YOUR_CLIENT_ID in the URL Schemas field.
-  In the other URL type, specify a unique string in the Identifier field,
-  such as "BundleId".  Specify your app's bundle identifier in the URL Schemas field.
+  the unique string `com.google.ReverseClientId`.  Specify your client ID
+  in reversed order in the URL Schemas field. For example, if your client ID
+  for iOS is `YOUR_CLIENT_ID.apps.googleusercontent.com`, then specify
+  `com.googleusercontent.apps.YOUR_CLIENT_ID` in the URL Schemas field.
+  In the other URL type, specify the unique string in the Identifier field,
+  `com.google.BundleId`.  Specify your app's bundle identifier in the
+  URL Schemas field.
 
 That's it! Your application should be ready to run!
 

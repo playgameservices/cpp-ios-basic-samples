@@ -54,8 +54,8 @@ perform the following steps:
     to the workspace.  To do this run `pod update`.
 2. Open the CollectAllTheStars workspace: `open CollectAllTheStars.xcworkspace`.
 3. Open project settings. Select the "CollectAllTheStars" target and,
-  on the "Summary" tab, change the Bundle Identifier to
-  something appropriate for your Provisioning Profile. (It will probably look like
+  on the "Summary" tab, change the Bundle Identifier to something appropriate
+  for your Provisioning Profile. (It will probably look like
   com.<your_company>.CollectAllTheStars)
     * If you plan on only running this on an emulator, you can leave it as-is.
 4. If you have already created this application in the Play Console (because you
@@ -76,12 +76,13 @@ perform the following steps:
   documentation.
 7. Click the "Info" tab and go down to the bottom where you see "URL Types".
   You need to add 2 URL types.  In one URL type, the Identifier needs to be
-  a unique string such as com.google.ReverseClientId.  Specify your client ID
-  in reversed order in the URL Schemas field. For example, if your client ID for iOS is
-  YOUR_CLIENT_ID_CODE.apps.googleusercontent.com, then specify
-  com.googleusercontent.apps.CLIENT_ID_CODE in the URL Schemas field.
+  the unique string `com.google.ReverseClientId`.  Specify your client ID
+  in reversed order in the URL Schemas field. For example, if your client ID
+  for iOS is `YOUR_CLIENT_ID.apps.googleusercontent.com`, then specify
+  `com.googleusercontent.apps.YOUR_CLIENT_ID` in the URL Schemas field.
   In the other URL type, specify a unique string in the Identifier field,
-  such as "BundleId".  Specify your app's bundle identifier in the URL Schemas field.
+  `com.google.BundleId`.  Specify your app's bundle identifier in the
+  URL Schemas field.
 
 
 That's it! Your application should be ready to run!

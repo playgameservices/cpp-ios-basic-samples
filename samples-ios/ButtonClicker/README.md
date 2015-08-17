@@ -60,13 +60,14 @@ your Xcode project. To follow this process, perform the following steps:
 6. Make a note of your client ID and application ID as described in the
   documentation
 7. Click the "Info" tab and go down to the bottom where you see "URL Types".
-    You need to add 2 URL types.  In one URL type, the Identifier needs to be
-     a unique string such as com.google.ReverseClientId.  Specify your client ID
-    in reversed order in the URL Schemas field. For example, if your client ID for iOS is
-    CLIENT_ID_CODE.apps.googleusercontent.com, then specify
-    com.googleusercontent.apps.CLIENT_ID_CODE in the URL Schemas field.
-     In the other URL type, specify a unique string in the Identifier field,
-    such as "BundleId".  Specify your app's bundle identifier in the URL Schemas field.
+  You need to add 2 URL types.  In one URL type, the Identifier needs to be
+  the unique string `com.google.ReverseClientId`. Specify your client ID
+  in reversed order in the URL Schemas field. For example, if your client ID
+  for iOS is `YOUR_CLIENT_ID.apps.googleusercontent.com`, then specify
+  `com.googleusercontent.apps.YOUR_CLIENT_ID` in the URL Schemas field.
+  In the other URL type, specify a unique string in the Identifier field,
+  `com.google.BundleId`.  Specify your app's bundle identifier in the
+  URL Schemas field.
 
 That's it! Your application should be ready to run!  Give it a try, and add some button-clicking
 excitement to your evening!

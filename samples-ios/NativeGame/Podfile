@@ -1,7 +1,4 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '8.0'
-
-source  'https://team.googlesource.com/gswitch/internal-specs'                                        
-source 'https://github.com/CocoaPods/Specs.git'                                 
+platform :ios, '7.0'
 
 pod 'GooglePlayGames', '~> 5.0'

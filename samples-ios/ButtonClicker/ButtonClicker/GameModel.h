@@ -17,6 +17,7 @@
 //  limitations under the License.
 
 #import <Foundation/Foundation.h>
+#import <GooglePlayGames.h>
 
 typedef NS_ENUM(NSInteger, BCGameState) {
   BCGameStateWaitingToStart,

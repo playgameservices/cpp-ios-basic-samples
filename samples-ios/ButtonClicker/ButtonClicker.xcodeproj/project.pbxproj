@@ -54,7 +54,6 @@
 		49701A461856BA6D00A19EBE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		49701A481856BA9800A19EBE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		49701A4A185788EA00A19EBE /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		4995C54518626C85008537F7 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		4995C54A18626F29008537F7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		49D8179918567206008B9FD9 /* ButtonClicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ButtonClicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D8179C18567206008B9FD9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -153,7 +152,6 @@
 				49D817AC18567206008B9FD9 /* AppDelegate.mm */,
 				494EB07D185F7C9400A93A4B /* ButtonClickerPlayer.h */,
 				494EB07E185F7C9400A93A4B /* ButtonClickerPlayer.m */,
-				4995C54518626C85008537F7 /* Constants.h */,
 				49D817D6185681C5008B9FD9 /* GameModel.h */,
 				49D817D7185681C5008B9FD9 /* GameModel.mm */,
 				49D817D31856818D008B9FD9 /* GameViewController.h */,

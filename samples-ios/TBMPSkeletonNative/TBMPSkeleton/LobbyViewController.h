@@ -21,11 +21,14 @@
 @interface LobbyViewController : UIViewController
 {
   std::unique_ptr<gpg::GameServices> service_;
+  BOOL showingUI;
 }
 - (void)OnAuthActionStarted:(gpg::AuthOperation) op;
 - (void)OnAuthActionFinished:(gpg::AuthOperation) op status:(gpg::AuthStatus)status;
 - (void)refreshButtons:(BOOL)b;
 - (void)showMatchInbox;
+- (NSString*)readClientId;
+- (NSString*)readClientId: (NSString*)reverseClientUrlName;
 
 
 @end

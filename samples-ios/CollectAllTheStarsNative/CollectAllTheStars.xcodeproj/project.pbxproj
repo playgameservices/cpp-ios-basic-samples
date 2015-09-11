@@ -43,6 +43,7 @@
 		49F3E1EC1793C62C003DBEF5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F3E1EB1793C62C003DBEF5 /* QuartzCore.framework */; };
 		49F3E1EE1793C634003DBEF5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F3E1ED1793C634003DBEF5 /* CoreText.framework */; };
 		4B6096DA194FBD86006B70E1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B6096D9194FBD86006B70E1 /* Settings.bundle */; };
+		B008F5A01B7AABD500705D01 /* GCATEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = B008F59E1B7AABD500705D01 /* GCATEngine.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +78,6 @@
 		499E31631739DED6003CFF53 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		499E31651739DEDA003CFF53 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		499E31671739DEE0003CFF53 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		499E316C1739E068003CFF53 /* GCATConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCATConstants.h; sourceTree = "<group>"; };
 		499E316D1739E3C2003CFF53 /* GCATModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCATModel.h; sourceTree = "<group>"; };
 		499E316E1739E3C3003CFF53 /* GCATModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCATModel.mm; sourceTree = "<group>"; };
 		499E3170173A0C76003CFF53 /* GCATStarInventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCATStarInventory.h; sourceTree = "<group>"; };
@@ -91,6 +91,8 @@
 		49F3E1EB1793C62C003DBEF5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		49F3E1ED1793C634003DBEF5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		4B6096D9194FBD86006B70E1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		B008F59E1B7AABD500705D01 /* GCATEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCATEngine.mm; sourceTree = "<group>"; };
+		B008F59F1B7AABD500705D01 /* GCATEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCATEngine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +186,6 @@
 				4979D93318A557C300D773E7 /* Artwork */,
 				499E31371739DABB003CFF53 /* GCATAppDelegate.h */,
 				499E31381739DABB003CFF53 /* GCATAppDelegate.mm */,
-				499E316C1739E068003CFF53 /* GCATConstants.h */,
 				499E316D1739E3C2003CFF53 /* GCATModel.h */,
 				499E316E1739E3C3003CFF53 /* GCATModel.mm */,
 				499E3170173A0C76003CFF53 /* GCATStarInventory.h */,
@@ -193,6 +194,8 @@
 				499E31411739DABB003CFF53 /* GCATViewController.mm */,
 				499E31431739DABB003CFF53 /* GCATViewController_iPhone.xib */,
 				499E312F1739DABB003CFF53 /* Supporting Files */,
+				B008F59E1B7AABD500705D01 /* GCATEngine.mm */,
+				B008F59F1B7AABD500705D01 /* GCATEngine.h */,
 			);
 			path = CollectAllTheStars;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B008F5A01B7AABD500705D01 /* GCATEngine.mm in Sources */,
 				499E31351739DABB003CFF53 /* main.m in Sources */,
 				499E31391739DABB003CFF53 /* GCATAppDelegate.mm in Sources */,
 				499E31421739DABB003CFF53 /* GCATViewController.mm in Sources */,

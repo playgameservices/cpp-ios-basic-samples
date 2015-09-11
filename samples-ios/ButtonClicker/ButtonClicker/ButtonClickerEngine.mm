@@ -80,7 +80,7 @@ void ButtonClickerEngine::InitGooglePlayGameServices() {
 
   // Game Services have not been initialized, create a new Game Services.
   gpg::IosPlatformConfiguration platform_configuration;
-  platform_configuration.SetClientID(CLIENT_ID);
+  platform_configuration.SetClientID(ReadClientId());
 
   gpg::GameServices::Builder builder;
   service_ = builder.SetOnAuthActionStarted([this](gpg::AuthOperation op) {
@@ -415,5 +415,44 @@ void ButtonClickerEngine::LeaveGame() {
 
   LOGI("Game is over");
 }
+
+/*
+ Reads the client id by looking at the url types configured.  One of the url types is
+ the client id reversed.  If it is not there, it is an error in configuration, so
+ it will be fixed sooner vs. a cryptic runtime auth error.
+
+ reverseClientUrlName is the key of the url type which contains the reversed client id.
+ */
+const char* ButtonClickerEngine::ReadClientId(const char* reverseClientUrlName) {
+
+    NSString *clientId = @"";
+    NSDictionary *d = [NSBundle mainBundle].infoDictionary;
+
+    // array of dictionaries of the url types;
+    NSArray *urlTypes = [d objectForKey:@"CFBundleURLTypes"];
+
+    for (NSDictionary* urlInfo in urlTypes)
+    {
+        NSString* name = [urlInfo objectForKey:@"CFBundleURLName"];
+        if ([name isEqualToString:[NSString stringWithUTF8String:reverseClientUrlName]]) {
+            NSArray* vals = [urlInfo objectForKey:@"CFBundleURLSchemes"];
+            // only use  the first
+            NSArray *parts = [(NSString*)[vals objectAtIndex:0] componentsSeparatedByString:@"."];
+            for (int i= (int)[parts count] -1;i>=0;i--) {
+                clientId = [clientId stringByAppendingString:[parts objectAtIndex:i]];
+                clientId = [clientId stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                if ( i > 0) {
+                    clientId = [clientId stringByAppendingString:@"."];
+                }
+            }
+            break;
+        }
+    }
+    if ([clientId length] <= 1) {
+        [NSException raise:@"Invalid configuration" format:@"Client ID based URL Type not configured!"];
+    }
+    return (const char*)[clientId UTF8String];
+}
+
 
 

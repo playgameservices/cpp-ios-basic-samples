@@ -30,7 +30,6 @@
 
 // For GPGS
 #include <gpg/gpg.h>
-#include "Constants.h"
 
 /*
  * Delegate definitions for ObjC bridge
@@ -139,6 +138,9 @@ class ButtonClickerEngine : public gpg::IRealTimeEventListener {
 
   // Helper function for waiting room & game play
   void ShowWaitingRoomAndPlayGame(const int32_t min_players);
+
+  // Helper to read the client id from the info plist where the reverse client id is configured.
+  const char* ReadClientId(const char* reverseClientUrlName="com.google.ReverseClientId");
 
   std::unique_ptr<gpg::GameServices> service_;  // gpg service instance
   gpg::RealTimeRoom room_;  // room status. This variable is updated each time

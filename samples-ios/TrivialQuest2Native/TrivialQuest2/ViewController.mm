@@ -19,9 +19,10 @@
 #import "Constants.h"
 
 #include <sstream>
+#include <GoogleSignIn.h>
 #include "gpg/gpg.h"
 
-@interface ViewController()<UIAlertViewDelegate>
+@interface ViewController()<UIAlertViewDelegate, GIDSignInUIDelegate>
 
 @end
 
@@ -33,9 +34,9 @@
 - (void)initializeGooglePlayGameServices
 {
   gpg::IosPlatformConfiguration platform_configuration;
-  platform_configuration.SetClientID(CLIENT_ID)
+  platform_configuration.SetClientID(CLIENT_ID.UTF8String)
   .SetOptionalViewControllerForPopups(self);
-  
+
   if (service_ == nullptr) {
     // Game Services have not been initialized, create a new Game Services.
     gpg::GameServices::Builder builder;
@@ -53,6 +54,7 @@
     .SetDefaultOnLog(gpg::LogLevel::VERBOSE)  //For debugging log
     .Create(platform_configuration);
   }
+  [GIDSignIn sharedInstance].uiDelegate = self;
 }
 
 /*
@@ -156,8 +158,11 @@
         NSLog(@"Claimed a milestone");
         [self ClaimMilestone:response.milestone_to_claim];
       }
+    } else if (response.status == gpg::UIStatus::ERROR_CANCELED) {
+      NSLog(@"UI canceled");
+      [self refreshButtons:YES];
     } else {
-      NSLog(@"Invalid response status");
+      NSLog(@"Invalid response status: %d", response.status);
       [self refreshButtons:YES];
     }
   });
@@ -167,7 +172,7 @@
 - (IBAction)ShowEvents:(id)sender {
   NSLog(@"---- Showing Event Counts -----");
   [self refreshButtons:NO];
-  
+
   service_->Events().FetchAll([self](gpg::EventManager::FetchAllResponse const &response)
                               {
                                 if (IsSuccess(response.status))
@@ -181,7 +186,7 @@
                                     str <<begin->second.Name() << ": " << begin->second.Count() << "\n";
                                     begin++;
                                   }
-                                  
+
                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Event status"
                                                                                   message:[NSString stringWithUTF8String:str.str().c_str()]
                                                                                  delegate:self
@@ -203,7 +208,7 @@
  */
 - (IBAction)attackBlue:(id)sender {
   NSLog(@"Attacked a blue monster.");
-  service_->Events().Increment(BLUE_MONSTER_EVENT_ID);
+  service_->Events().Increment(EVENT_BLUE.UTF8String);
 }
 
 /** Simulates attacking a "green" monster in-game.
@@ -211,7 +216,7 @@
  */
 - (IBAction)attackGreen:(id)sender {
   NSLog(@"Attacked a green monster.");
-  service_->Events().Increment(GREEN_MONSTER_EVENT_ID);
+  service_->Events().Increment(EVENT_GREEN.UTF8String);
 }
 
 /** Simulates attacking a "red" monster in-game.
@@ -219,7 +224,7 @@
  */
 - (IBAction)attackRed:(id)sender {
   NSLog(@"Attacked a red monster.");
-  service_->Events().Increment(RED_MONSTER_EVENT_ID);
+  service_->Events().Increment(EVENT_RED.UTF8String);
 }
 
 /** Simulates attacking a "yellow" monster in-game.
@@ -227,7 +232,7 @@
  */
 - (IBAction)attackYellow:(id)sender {
   NSLog(@"Attacked a yellow monster.");
-  service_->Events().Increment(YELLOW_MONSTER_EVENT_ID);
+  service_->Events().Increment(EVENT_YELLOW.UTF8String);
 }
 
 - (void)didReceiveMemoryWarning

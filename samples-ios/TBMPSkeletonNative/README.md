@@ -3,7 +3,7 @@
 A sample application that demonstrates some simple turn-based multiplayer using both
 invites and matchmaking with strangers with NativeClient SDK.
 It's also compatible with the Android version
-for some cross-platform word-typing action! 
+for some cross-platform word-typing action!
 
 ## Code
 
@@ -12,23 +12,20 @@ TBMP Skeleton consists of a number of files that might be of interest to you:
 * `AppDelegate` contains some of the code required to handle incoming notifications
 and sign-in.
 
-* `Constants.h` contains the constants that you will need to run this game on your 
-own.
-
 * `GameData` is a small class that represents the data passed by the game. It includes
 some convenience methods to convert this data back and forth into JSON. (The Android version
 of this game used UTF16 strings, so we had to as well.)
 
-* `GameViewController` is the ViewController for the game itself. It also contains 
+* `GameViewController` is the ViewController for the game itself. It also contains
 most of the logic for determining who the next player is, setting game results,
 submitting a turn, finishing a match, or leaving a match entirely.
 
 * `LobbyViewController` contains methods that handle sign-in and create real-time
-mutliplayer games, either through invites (using the PeoplePickerVC) or through 
+mutliplayer games, either through invites (using the PeoplePickerVC) or through
 automatching.
 
 * `Main.storyboard` is the main storyboard used by the application. We currently
-use the same storyboard for both iPhone and iPad games 
+use the same storyboard for both iPhone and iPad games
 
 ## Running the sample application
 
@@ -36,7 +33,7 @@ To run TBMP Skeleton on your own device, you will need to create
 your own version of the game in the Play Console and copy over some information to
 your Xcode project. To follow this process, perform the following steps:
 
-1. In a terminal window, change directories to the <TBMPSkeletonNative> directory which contains the Podfile 
+1. In a terminal window, change directories to the <TBMPSkeletonNative> directory which contains the Podfile
 and add the cocoapod project to the workspace.  To do this run `pod update`.
 2. Open the TBMPSkeletonSample workspace: `open TBMPSkeletonSample.xcworkspace`.
 3. Go to the project settings. Select the "TBMP Skeleton" target and,
@@ -56,18 +53,23 @@ and add the cocoapod project to the workspace.  To do this run `pod update`.
     * Again, you will be using the Bundle ID that you created in Step 1.
     * You can leave your App Store ID blank for testing purposes.
  	* Don't forget to turn on the "Turn-based multiplayer" switch!
-6. If you want to try out receiving invites and "it's your turn" notifications, you 
-  need to get an APNS certificate from iTunes Connect and upload it to the developer console 
+6. If you want to try out receiving invites and "it's your turn" notifications, you
+  need to get an APNS certificate from iTunes Connect and upload it to the developer console
   as well. Please review our documentation for instructions on how to do this.
 7. Make a note of your client ID and application ID as described in the
   documentation
-8. Once that's done, open up your `Constants.h` file, and replace the `CLIENT_ID` value
-  with your own OAuth2.0 client ID.
-9. Go to your TBMPSkeleton-info.plist file and replace the `GPGApplicationID` value with
-  the actual Applicaton ID of your game.
+8. Click the "Info" tab and go down to the bottom where you see "URL Types".
+  You need to add 2 URL types.  In one URL type, the Identifier needs to be
+  the unique string `com.google.ReverseClientId`.  Specify your client ID
+  in reversed order in the URL Schemas field. For example, if your client ID
+  for iOS is `YOUR_CLIENT_ID.apps.googleusercontent.com`, then specify
+  `com.googleusercontent.apps.YOUR_CLIENT_ID` in the URL Schemas field.
+  In the other URL type, specify a unique string in the Identifier field,
+  `com.google.BundleId`.  Specify your app's bundle identifier in the
+  URL Schemas field.
 
-That's it! Your application should be ready to run!  Give it a try, and add some word typing
-excitement to your evening!
+That's it! Your application should be ready to run!  Give it a try, and add
+some word typing excitement to your evening!
 
 ## Known issues
 

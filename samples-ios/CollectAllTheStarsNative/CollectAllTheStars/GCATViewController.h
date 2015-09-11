@@ -23,8 +23,6 @@
 
 @interface GCATViewController : UIViewController
 {
-@public
-  std::unique_ptr<gpg::GameServices> service_;
 }
 - (void)refreshStarDisplay;
 @end

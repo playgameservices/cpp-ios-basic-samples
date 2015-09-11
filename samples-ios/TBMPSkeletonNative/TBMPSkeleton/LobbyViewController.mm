@@ -15,11 +15,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import "Constants.h"
 #import "GameData.h"
 #import "GameViewController.h"
 #import "LobbyViewController.h"
 
+#import <GoogleSignIn.h>
 //
 // Constants
 //
@@ -27,7 +27,7 @@ const int32_t MIN_PLAYERS = 1;
 const int32_t MAX_PLAYERS = 3;
 
 
-@interface LobbyViewController () {
+@interface LobbyViewController () <GIDSignInUIDelegate> {
   gpg::TurnBasedMatch matchToTransfer_;
   bool dismiss_;
   bool leave_;
@@ -51,9 +51,11 @@ const int32_t MAX_PLAYERS = 3;
 - (void)initializeGooglePlayGameServices
 {
   gpg::IosPlatformConfiguration platform_configuration;
-  platform_configuration.SetClientID(CLIENT_ID)
+  platform_configuration.SetClientID([self readClientId].UTF8String)
   .SetOptionalViewControllerForPopups(self);
-  
+
+  [GIDSignIn sharedInstance].uiDelegate = self;
+
   if (service_ == nullptr) {
     // Game Services have not been initialized, create a new Game Services.
     gpg::GameServices::Builder builder;
@@ -66,17 +68,19 @@ const int32_t MAX_PLAYERS = 3;
                                [self OnAuthActionFinished:op status:status];
                              })
     .SetOnTurnBasedMatchEvent(
-                              [self](gpg::TurnBasedMultiplayerEvent event, std::string match_id,
+                              [self](gpg::MultiplayerEvent event, std::string match_id,
                                      gpg::TurnBasedMatch match) {
                                 NSLog(@"TurnBasedMultiplayerEvent callback");
                                 //Show default inbox
+                                [self updateInboxCount];
                                 [self showMatchInbox];
                               })
     .SetOnMultiplayerInvitationEvent(
-                                     [self](gpg::TurnBasedMultiplayerEvent event, std::string match_id,
+                                     [self](gpg::MultiplayerEvent event, std::string match_id,
                                             gpg::MultiplayerInvitation invitation) {
                                        NSLog(@"MultiplayerInvitationEvent callback");
                                        //Show default inbox
+                                        [self updateInboxCount];
                                        [self showMatchInbox];
                                      }).Create(platform_configuration);
   }
@@ -119,8 +123,15 @@ const int32_t MAX_PLAYERS = 3;
  */
 -(void)showMatchInbox
 {
+  if (showingUI) {
+    NSLog(@"Skipping inbox UI since the UI is already showing");
+    return;
+  }
+  showingUI = YES;
+  NSLog(@"Showing Inbox");
   service_->TurnBasedMultiplayer().ShowMatchInboxUI([self](
     gpg::TurnBasedMultiplayerManager::MatchInboxUIResponse const & response) {
+    showingUI = NO;
     if (gpg::IsSuccess(response.status)) {
       //Show game based on the user's selection
       switch (response.match.Status()) {
@@ -142,8 +153,10 @@ const int32_t MAX_PLAYERS = 3;
           [self playGame:response.match dismiss:false leave:false cancel:false rematch:false];
           break;
       }
+    } else if (response.status == gpg::UIStatus::ERROR_CANCELED) {
+        NSLog(@"User canceled UI");
     } else {
-      NSLog(@"Invalid response status");
+      NSLog(@"Invalid response status: %d", response.status);
     }
   });
 }
@@ -155,6 +168,9 @@ const int32_t MAX_PLAYERS = 3;
     self.quickMatchButton.enabled = b;
     self.inviteFriendsButton.enabled = b;
     self.viewMyMatchesButton.enabled = b;
+
+    [self updateInboxCount];
+
   });
 }
 
@@ -165,6 +181,32 @@ const int32_t MAX_PLAYERS = 3;
   } else {
     service_->StartAuthorizationUI();
   }
+}
+
+- (void) updateInboxCount {
+  service_->TurnBasedMultiplayer().FetchMatches(
+                                                [self](gpg::TurnBasedMultiplayerManager::TurnBasedMatchesResponse const&  resp)
+                                                {
+                                                  NSLog(@"rsp: status = %d", resp.status);
+                                                  if(resp.status == gpg::MultiplayerStatus::VALID || resp.status == gpg::MultiplayerStatus::VALID_BUT_STALE) {
+                                                    int ct = (int)(resp.data.invitations.size() + resp.data.my_turn_matches.size());
+                                                    NSString* newTitle;
+                                                    if (ct > 0) {
+                                                      newTitle = [NSString stringWithFormat:@"All my matches (%d)", ct];
+                                                    }
+                                                    else {
+                                                      newTitle = @"All my matches";
+                                                    }
+
+                                                    [self.viewMyMatchesButton setTitle:newTitle forState:UIControlStateNormal];
+
+
+                                                  }
+                                                  else {
+                                                    NSLog(@"Error getting matches!");
+                                                  }
+
+                                                });
 }
 
 # pragma mark - Matchmaking methods
@@ -207,7 +249,7 @@ const int32_t MAX_PLAYERS = 3;
   gpg::TurnBasedMatchConfig config =
   gpg::TurnBasedMatchConfig::Builder().SetMinimumAutomatchingPlayers(1)
   .SetMaximumAutomatchingPlayers(2).Create();
-  
+
   [self refreshButtons:NO];
   manager.CreateTurnBasedMatch(
                                config,
@@ -252,9 +294,10 @@ const int32_t MAX_PLAYERS = 3;
   viewController.leaveCurrentMatch = leave_;
   viewController.cancelCurrentMatch = cancel_;
   viewController.rematchCurrent = rematch_;
-  
-  gpg::PlayerManager::FetchSelfResponse response = service_->Players().FetchSelfBlocking();
-  viewController.localPlayerId = response.data.Id().c_str();
+
+  service_->Players().FetchSelf([viewController](gpg::PlayerManager::FetchSelfResponse response){
+    viewController.localPlayerId = response.data.Id().c_str();
+  });
 }
 
 # pragma mark - Lifecycle methods
@@ -262,10 +305,11 @@ const int32_t MAX_PLAYERS = 3;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
+
+  showingUI = NO;
+
   // Initialize TBMPGame object
   [self initializeGooglePlayGameServices];
-  
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -279,4 +323,44 @@ const int32_t MAX_PLAYERS = 3;
   // Dispose of any resources that can be recreated.
 }
 
+/*
+ Reads the client id by looking at the url types configured.  One of the url types is
+ the client id reversed.  If it is not there, it is an error in configuration, so
+ it will be fixed sooner vs. a cryptic runtime auth error.
+
+ reverseClientUrlName is the key of the url type which contains the reversed client id.
+ */
+- (NSString*) readClientId {
+    return [self readClientId: @"com.google.ReverseClientId"];
+}
+- (NSString*) readClientId: (NSString*) reverseClientUrlName {
+
+    NSString *clientId = @"";
+    NSDictionary *d = [NSBundle mainBundle].infoDictionary;
+
+    // array of dictionaries of the url types;
+    NSArray *urlTypes = [d objectForKey:@"CFBundleURLTypes"];
+
+    for (NSDictionary* urlInfo in urlTypes)
+    {
+        NSString* name = [urlInfo objectForKey:@"CFBundleURLName"];
+        if ([name isEqualToString:reverseClientUrlName]) {
+            NSArray* vals = [urlInfo objectForKey:@"CFBundleURLSchemes"];
+            // only use  the first
+            NSArray *parts = [(NSString*)[vals objectAtIndex:0] componentsSeparatedByString:@"."];
+            for (int i= (int)[parts count] -1;i>=0;i--) {
+                clientId = [clientId stringByAppendingString:[parts objectAtIndex:i]];
+                clientId = [clientId stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                if ( i > 0) {
+                    clientId = [clientId stringByAppendingString:@"."];
+                }
+            }
+            break;
+        }
+    }
+    if ([clientId length] <= 1) {
+        [NSException raise:@"Invalid configuration" format:@"Client ID based URL Type not configured!"];
+    }
+    return clientId;
+}
 @end

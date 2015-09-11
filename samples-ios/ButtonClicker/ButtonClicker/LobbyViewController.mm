@@ -17,9 +17,8 @@
 
 #import "LobbyViewController.h"
 #import "ButtonClickerEngine.h"
-#import "Constants.h"
 
-@interface LobbyViewController ()<UIAlertViewDelegate, ButtonClickerGameDelegate> {
+@interface LobbyViewController ()<UIAlertViewDelegate, ButtonClickerGameDelegate, GIDSignInUIDelegate> {
   BOOL _currentlySigningIn;
 }
 @property (weak, nonatomic) IBOutlet UIButton *signInButton;
@@ -139,6 +138,7 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   ButtonClickerEngine::GetInstance().SetGpgDelegate(self);
+  [GIDSignIn sharedInstance].uiDelegate = self;
 
   [self refreshButtons];
 }

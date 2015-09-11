@@ -43,9 +43,15 @@
 
 - (void)setMatch:(gpg::TurnBasedMatch&)match {
   _match = match;
-  
-  NSLog(@"Setting a match -- the pending participant is %s", match.PendingParticipant().Id().c_str());
-  
+
+  NSLog(@"Setting a match, status = %d", match.Status());
+  if (match.PendingParticipant().Valid()) {
+    NSLog(@"Setting a match -- the pending participant is %s", match.PendingParticipant().Id().c_str());
+  }
+  else {
+    NSLog(@"There is no pending participant");
+  }
+
   if (_match.Data().size()) {
     NSData* data = [NSData dataWithBytes:&_match.Data()[0] length:_match.Data().size()];
     self.gameData = [[GameData alloc] initWitDataFromGPG:data];
@@ -59,12 +65,12 @@
  * Find result for given participant
  */
 - (gpg::MatchResult)findResultForParticipant:(const std::string*)participantId {
-  
+
   if (self.match.ParticipantResults().HasResultsForParticipant(*participantId))
   {
     return self.match.ParticipantResults().MatchResultForParticipant(*participantId);
   }
-  
+
   return gpg::MatchResult::NONE;
 }
 
@@ -179,7 +185,7 @@
  * Take turn based on playGame UI parameters
  */
 - (void)takeTurn:(bool) winning losing:(bool) losing {
-  
+
   //Find the participant for the local player.
   gpg::MultiplayerParticipant localParticipant;
   for (auto& participant : self.match.Participants()) {
@@ -188,15 +194,15 @@
       localParticipant = participant;
     }
   }
-  
+
   NSLog(@"Taking my turn. local participant id:%s", localParticipant.Id().c_str());
-  
+
   // Convert NSData to std::vector
   std::vector<uint8_t> match_data;
   NSData* data = self.gameData.jsonifyAndConvertToData;
   const uint8_t* p = (const uint8_t*)[data bytes];
   match_data.assign(p, p + [data length]);
-  
+
   //By default, passing through existing participatntResults
   gpg::ParticipantResults results = self.match.ParticipantResults();
   if (winning) {
@@ -207,7 +213,7 @@
                 gpg::MatchResult::WIN   // status
                 );
     // Note that we need to pass participantID rather than playerID
-    
+
   } else if (losing) {
     //Create losing participants result
     results = self.match.ParticipantResults()
@@ -217,7 +223,7 @@
                 );
     // Note that we need to pass participantID rather than playerID
   }
-  
+
   //Take normal turn
   self.manager->TakeMyTurn(self.match,
                            match_data,
@@ -240,8 +246,11 @@
 
 - (IBAction)takeTurnWasPressed:(id)sender {
   self.gameData.stringToPassAround = self.turnTextField.text;
+    if (self.gameData.stringToPassAround == nil) {
+        self.gameData.stringToPassAround = @"";
+    }
   self.gameData.turnCounter++;
-  
+
   // Did the player click "win game?", or have all other players been eliminated?
   if (self.winGameSwitch.on )
   {
@@ -268,8 +277,9 @@
 - (void)enableInterfaceIfMyTurn {
   NSArray *controlsToEnable = @[self.leaveSwitch, self.playerLostSwitch, self.takeTurnButton,
                                 self.turnTextField, self.winGameSwitch];
-  bool enable = (self.localPlayerId == self.match.PendingParticipant().Player().Id());
-  
+  bool enable = self.match.Status() == gpg::MatchStatus::MY_TURN || self.match.Status() == gpg::MatchStatus::INVITED;
+  enable = enable && (self.localPlayerId == self.match.PendingParticipant().Player().Id());
+
   for (UIControl *shouldEnable in controlsToEnable) {
     shouldEnable.enabled = enable;
   }
@@ -290,7 +300,7 @@
   // Populate our data with the turn data
   self.turnTextField.text = self.gameData.stringToPassAround;
   self.turnNumberLabel.text = [NSString stringWithFormat:@"Turn %d", self.gameData.turnCounter];
-  
+
   // Show match management buttons if any of them is needed
   if( self.dismissCurrentMatch || self.leaveCurrentMatch || self.cancelCurrentMatch || self.rematchCurrent)
   {
@@ -308,7 +318,7 @@
     self.cancelButton.hidden = YES;
     self.rematchButton.hidden = YES;
   }
-  
+
   [self enableInterfaceIfMyTurn];
 }
 
@@ -318,20 +328,22 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
+
   // Let's diable the take turn button. Require you to edit something first.
   self.takeTurnButton.enabled = NO;
   [self.winGameSwitch setOn:NO];
-  
+
   [self refreshInterfaceFromMatchData];
-  
-  if (self.match.SuggestedNextParticipant().Valid() == false)
-  {
-    [[[UIAlertView alloc] initWithTitle:@"You won!"
-                                message:@"All other players have been eliminated! You win!"
-                               delegate:self
-                      cancelButtonTitle:@"Hooray!"
-                      otherButtonTitles:nil] show];
+
+  if (self.match.Status() == gpg::MatchStatus::MY_TURN) {
+    if (self.match.SuggestedNextParticipant().Valid() == false)
+    {
+      [[[UIAlertView alloc] initWithTitle:@"You won!"
+                                  message:@"All other players have been eliminated! You win!"
+                                 delegate:self
+                        cancelButtonTitle:@"Hooray!"
+                        otherButtonTitles:nil] show];
+    }
   }
 }
 

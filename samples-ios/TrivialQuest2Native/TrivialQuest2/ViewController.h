@@ -17,8 +17,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GooglePlus/GooglePlus.h>
-#include <gpg/gpg.h>
+
+#import "gpg/gpg.h"
 
 @interface ViewController : UIViewController
 {

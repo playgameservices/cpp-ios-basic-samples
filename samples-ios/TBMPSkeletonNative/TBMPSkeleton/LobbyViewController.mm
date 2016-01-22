@@ -269,7 +269,7 @@ const int32_t MAX_PLAYERS = 3;
 }
 
 # pragma mark - Play game
-- (void)playGame:(gpg::TurnBasedMatch const&)match
+- (void)playGame:(gpg::TurnBasedMatch)match
          dismiss:(bool)dismiss
            leave:(bool)leave
           cancel:(bool)cancel
